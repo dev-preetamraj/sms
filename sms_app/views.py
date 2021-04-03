@@ -1,11 +1,18 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
-from .models import Staff
+from .models import Staff, Student
 from .forms import AddStaffForm, RegisterUserForm
 
 
 def admin_dashboard(request):
-    context = {}
+    students = Student.objects.all()
+    student_count = students.count()
+    staffs = Staff.objects.all()
+    staff_count = staffs.count()
+    context = {
+        'student_count': student_count,
+        'staff_count': staff_count
+    }
     return render(request, 'main/dashboard.html', context)
 
 
