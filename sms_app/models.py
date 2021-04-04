@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 # from django.contrib.auth.models import AbstractUser
 
 
@@ -68,7 +69,7 @@ class Student(models.Model):
 # Course_TABLE(course id,user,address, date_created, lastupdate)
 class Course(models.Model):
     id = models.AutoField(primary_key = True)
-    course_name = models.CharField(max_length = 100)
+    course_name = models.CharField(max_length = 100, null = False)
     date_created = models.DateField(auto_now_add = True)
     date_updated = models.DateField(auto_now = True)
 
@@ -108,7 +109,7 @@ class Attendance(models.Model):
 class StudentAttendance(models.Model):
     id = models.AutoField(primary_key=True)
     attendance_id = models.ForeignKey(Attendance, on_delete=models.CASCADE)
-    student_id = models.ForeignKey(Students, on_delete=models.CASCADE) 
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE) 
     attendence_type = models.BooleanField(default=False)
     date_created = models.DateTimeField( auto_now_add=True )
     date_updated = models.DateTimeField( auto_now=True )
@@ -125,6 +126,9 @@ class Staffs_FeedBack(models.Model):
     date_created = models.DateTimeField( auto_now_add=True )
     date_updated = models.DateTimeField( auto_now=True )
 
+    def __str__(self):
+        return self.feedback
+
 # students_feedback table(id, student id <- foreign key referencing to student table, feedback, reply, date_created, date updated)
 class Students_FeedBack(models.Model):
     id = models.AutoField(primary_key=True)
@@ -133,6 +137,9 @@ class Students_FeedBack(models.Model):
     reply = models.TextField( null=True , blank=True )
     date_created = models.DateTimeField( auto_now_add=True )
     date_updated = models.DateTimeField( auto_now=True )
+
+    def __str__(self):
+        return self.feedback
 
 # staff_leave table(id, staff id <- foreign key referencing to staff table, leave date, mesage, date_created, date updated, status of leave)
 class Staff_Leave(models.Model):
@@ -143,6 +150,9 @@ class Staff_Leave(models.Model):
     date_created = models.DateTimeField( auto_now_add=True )
     date_updated = models.DateTimeField( auto_now=True )
     status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
+
+    def __str__(self):
+        return self.leave_date
   
 # staff_leave table(id, student id <- foreign key referencing to student table, leave date, mesage, date_created, date updated, status of leave)
 class Student_Leave(models.Model):
@@ -154,6 +164,9 @@ class Student_Leave(models.Model):
     date_updated = models.DateTimeField( auto_now=True )
     status = models.IntegerField(default=0, validators=[MaxValueValidator(2), MinValueValidator(0)])
 
+    def __str__(self):
+        return self.leave_date
+
 # resuls table (id, student id <- foreign key referencing to student table, subject id <- foregin key referencing to subject table,
 #               assignment marks, exam marks, date created, date updated)
 class Result(models.Model):
@@ -164,3 +177,6 @@ class Result(models.Model):
     exam_marks = models.FloatField(default=0)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "assignment_marks = {}, exam marks = {}".format(str(self.assignment_marks),str(self.exam_marks))
