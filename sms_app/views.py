@@ -41,3 +41,8 @@ def add_staff(request):
 
     context = {'form': form}
     return render(request, 'app/add_staff.html', context)
+
+
+def test_view(request):
+    context = {}
+    return render(request, 'main/test.html', context)
