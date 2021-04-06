@@ -5,6 +5,7 @@ Sara content baad mai dalengye, filal ke liye kaisye contribute krna vo step nic
 
 1. First fork this repo and then Clone it
 2. Run `cd sms` - to move into the directory 
+3. Install virtualenv using command - `pip install virtualenv`
 3. Now activate the virtual environment using command - `virtualenv env`
 4. Now activate the virtual env using command - `.\env\Scripts\activate` . This will activate the virtual environment. For linux and Mac try - `source env/bin/activate`
 5. Install all requirements by - `pip install -r requirements.txt`.
