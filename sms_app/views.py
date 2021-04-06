@@ -42,6 +42,17 @@ def add_staff(request):
     context = {'form': form}
     return render(request, 'app/add_staff.html', context)
 
+def charts_view(req):
+    context = {}
+    return render(req, 'main/charts.html', context)
+
+def tables_view(req):
+    context = {}
+    return render(req, 'main/tables.html', context)
+
+def login_view(req):
+    context = {}
+    return render(req, 'main/login.html', context)
 
 def test_view(request):
     context = {}
