@@ -1,152 +1,20 @@
+
 {% extends 'main/base.html' %}
 {% load static %}
 
 
 {% block content %}
-      <!-- Breadcrumb-->
-      <div class="breadcrumb-holder">
-        <div class="container-fluid">
-          <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Tables       </li>
-          </ul>
-        </div>
-      </div>
-      <section>
-        <div class="container-fluid">
-          <!-- Page Header-->
-          <header> 
-            <h1 class="h3 display">Tables            </h1>
-          </header>
+
+  
+
+
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
               <div class="card">
                 <div class="card-header">
-                  <h4>Basic Table</h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Striped Table</h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter                            </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Striped table with hover effect</h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter                            </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Compact Table</h4>
-                </div>
+                  <h3> Manage Student</h3>
+                  <br>
+                  <a href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">+ Add Students</a></div>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table table-striped table-sm">
@@ -156,52 +24,49 @@
                           <th>First Name</th>
                           <th>Last Name</th>
                           <th>Username</th>
+                          <th>Email</th>
+                          <th>Address</th>
+                          <th>Gender</th>
+                          <th>Profile Pic</th>
+                          <th>Session</th>
+                          <th>Course</th>
+                          <th>Last Login</th>
+                          <th>Date Joined</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                        {% for student in students %}
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                          <th scope="row">{{student.id}}</th>
+                          <td>{{student.user.first_name}}</td>
+                          <td>{{student.user.last_name}}</td>
+                          <td>{{student.user.username}}</td>
+                          <td>{{student.user.email}}</td>
+                          <td>{{student.address}}</td>
+                          <td>{{student.gender}}</td>
+                          <td><img src="{{ student.profile_pic.url}}" width="110" height="110" ></td>
+                          <td>{{student.session_under}}</td>
+                          <td>{{student.courses_taken}}</td>
+                          <td>{{student.last_login}}</td>
+                          <td>{{student.date_joined}}</td>
+                          <td>{{student.Action}}</td>
+                          <td>
+                            <div class="btn-group" role="group" >
+                              <button type="button" class="btn btn-primary" style="margin:5px;margin-left:-50px;padding:0px 17px;">Edit</button>
+                              <button type="button" class="btn btn-danger"style="margin:5px;">Delete</button>
+                            </div>
+                          </td>
+
+        
                         </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter      </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">4</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">6</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter       </td>
-                        </tr>
+                        {% endfor %}
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+            
+           
 {% endblock %}

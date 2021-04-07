@@ -46,10 +46,14 @@ def charts_view(req):
     context = {}
     return render(req, 'main/charts.html', context)
 
-def tables_view(req):
-    context = {}
-    return render(req, 'main/tables.html', context)
+def tables_view(request):
+    students = Student.objects.all()
 
+    context = {
+        'students': students,
+   
+    }
+    return render(request, 'main/tables.html', context)
 def login_view(req):
     context = {}
     return render(req, 'main/login.html', context)
