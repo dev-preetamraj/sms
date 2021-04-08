@@ -98,3 +98,11 @@ def update_student_view(request, pk):
         'form': form
     }
     return render(request, 'main/update_student.html', context)
+
+def delete_student_view(request,pk):
+    students = Student.objects.get(id=pk)
+    if request.method == "POST":
+        students.delete()
+        return redirect('/')
+    context={'item':students}
+    return render(request,'main/delete_student.html',context)
