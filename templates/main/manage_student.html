@@ -52,7 +52,8 @@
                   <div class="btn-group" role="group">
                     <a href="{% url 'update_student' student.pk %}"><button type="button" class="btn btn-primary"
                         style="margin:5px;margin-left:-50px;padding:0px 17px;">Edit</button></a>
-                    <button type="button" class="btn btn-danger" style="margin:5px;">Delete</button>
+                    <a href="{% url 'delete_student' student.pk %}"><button type="button" class="btn btn-danger" 
+                        style="margin:5px;">Delete</button></a>
                   </div>
                 </td>
 
