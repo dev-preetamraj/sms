@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .views import Staff
+from .views import Staff, Student
 
 
 class RegisterUserForm(UserCreationForm):
@@ -25,4 +25,10 @@ class RegisterUserForm(UserCreationForm):
 class AddStaffForm(ModelForm):
     class Meta:
         model = Staff
+        fields = '__all__'
+
+
+class AddStudentForm(ModelForm):
+    class Meta:
+        model = Student
         fields = '__all__'

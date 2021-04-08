@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
 from .models import Staff, Student
-from .forms import AddStaffForm, RegisterUserForm
+from .forms import AddStaffForm, RegisterUserForm, AddStudentForm
 
 
 def admin_dashboard(request):
@@ -42,26 +42,59 @@ def add_staff(request):
     context = {'form': form}
     return render(request, 'app/add_staff.html', context)
 
+
 def charts_view(req):
     context = {}
     return render(req, 'main/charts.html', context)
+
 
 def manage_student_view(request):
     students = Student.objects.all()
 
     context = {
         'students': students,
-   
+
     }
     return render(request, 'main/manage_student.html', context)
+
+
 def login_view(req):
     context = {}
     return render(req, 'main/login.html', context)
+
 
 def test_view(request):
     context = {}
     return render(request, 'main/test.html', context)
 
+
 def tables_view(request):
     context = {}
     return render(request, 'main/tables.html', context)
+
+
+def add_student_view(request):
+    form = AddStudentForm()
+    if request.method == 'POST':
+        form = AddStudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_student_view')
+    context = {
+        'form': form
+    }
+    return render(request, 'main/add_student.html', context)
+
+
+def update_student_view(request, pk):
+    students = Student.objects.get(id=pk)
+    form = AddStudentForm(instance=students)
+    if request.method == 'POST':
+        form = AddStudentForm(request.POST, request.FILES, instance=students)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_student_view')
+    context = {
+        'form': form
+    }
+    return render(request, 'main/update_student.html', context)
