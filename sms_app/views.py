@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
 from .models import Staff, Student
-from .forms import AddStaffForm, RegisterUserForm, AddStudentForm
-from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import DetailView
+
 
 def admin_dashboard(request):
     students = Student.objects.all()
@@ -89,14 +90,19 @@ def add_student_view(request):
 
 def update_student_view(request, pk):
     students = Student.objects.get(id=pk)
-    form = AddStudentForm(instance=students)
+    student_form = AddStudentForm(instance=students)
+    user_form = UpdateUserForm(instance=students.user)
     if request.method == 'POST':
-        form = AddStudentForm(request.POST, request.FILES, instance=students)
-        if form.is_valid():
-            form.save()
+        student_form = AddStudentForm(
+            request.POST, request.FILES, instance=students)
+        user_form = UpdateUserForm(request.POST, instance=students.user)
+        if student_form.is_valid() and user_form.is_valid():
+            student_form.save()
+            user_form.save()
             return redirect('manage_student_view')
     context = {
-        'form': form
+        'student_form': student_form,
+        'user_form': user_form
     }
     return render(request, 'main/update_student.html', context)
 
@@ -109,8 +115,9 @@ def delete_student_view(request, pk):
     context = {'item': students}
     return render(request, 'main/delete_student.html', context)
 
-def see_detail_view(request,pk):
+
+def see_detail_view(request, pk):
     stu = Student.objects.get(id=pk)
-  
-    context ={'student':stu}
-    return render(request,'main/see_detail.html',context)
+
+    context = {'student': stu}
+    return render(request, 'main/see_detail.html', context)
