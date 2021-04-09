@@ -107,3 +107,7 @@ def delete_student_view(request, pk):
         return redirect('manage_student_view')
     context = {'item': students}
     return render(request, 'main/delete_student.html', context)
+
+def see_detail_view(request):
+    context ={}
+    return render(request,'main/see_detail.html',context)

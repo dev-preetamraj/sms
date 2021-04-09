@@ -1,0 +1,72 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <div class="container">
+
+    <div class="container">
+<br>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Student Details</h3>
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Student Id:</label>
+    <div class="col-sm-4">
+        <label>{{ student.pk }} </label>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-3 col-form-label">First Name:</label>
+    <div class="col-sm-4">
+        <label>{{ student.first_name }} </label>
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Last Name:</label>
+    <div class="col-sm-4">
+        <label>{{ student.last_name }} </label>
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Email:</label>
+    <div class="col-sm-4">
+         <label>{{ student.email }} </label>
+    </div>
+    </div>
+
+   <div class="form-group row">
+    <label class="col-sm-3 col-form-label">Gender </label>
+    <div class="col-sm-4 ">
+         <label>{{ student.gender }} </label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+
+    <a href="/employees" class="btn btn-info">OK</a>
+    </div>
+  </div>
+
+    </div>
+
+
+ </div>
+
+{% endblock %}
+
+
+
+
+
