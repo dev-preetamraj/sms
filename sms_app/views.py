@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
 from .models import Staff, Student
 from .forms import AddStaffForm, RegisterUserForm, AddStudentForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from django.views.generic.detail import DetailView
 
 def admin_dashboard(request):
     students = Student.objects.all()
@@ -108,6 +109,8 @@ def delete_student_view(request, pk):
     context = {'item': students}
     return render(request, 'main/delete_student.html', context)
 
-def see_detail_view(request):
-    context ={}
+def see_detail_view(request,pk):
+    stu = Student.objects.get(id=pk)
+  
+    context ={'student':stu}
     return render(request,'main/see_detail.html',context)

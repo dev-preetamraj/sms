@@ -1,61 +1,90 @@
 {% extends 'main/base.html' %}
 {% load static %}
-
-
 {% block content %}
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <div class="container">
 
     <div class="container">
 <br>
-    <div class="form-group row">
-    <label class="col-sm-2 col-form-label"></label>
-    <div class="col-sm-4">
-    <h3>Student Details</h3>
-    </div>
+
+  <div class="row">
+    <div class="col-6 col-md-4"></div>
+    <div class="col-6 col-md-4"><h1><pre>Student Details</pre></h1></div>
+    <div class="col-6 col-md-4"></div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Student ID  :</div>
+    <div class="col">{{ student.pk }} </div>
+    <div class="col"></div>
   </div>
 
-    <div class="form-group row">
-    <label class="col-sm-3 col-form-label">Student Id:</label>
-    <div class="col-sm-4">
-        <label>{{ student.pk }} </label>
-    </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">First Name :</div>
+    <div class="col">{{ student.user.first_name }}</div>
+    <div class="col"></div>
   </div>
 
-  <div class="form-group row">
-    <label class="col-sm-3 col-form-label">First Name:</label>
-    <div class="col-sm-4">
-        <label>{{ student.first_name }} </label>
-    </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Last Name  :</div>
+    <div class="col">{{ student.user.last_name }}</div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Profile Pic  :</div>
+    <div class="col"><img src="{{ student.profile_pic.url}}" width ="110" height="110"></div>
+    <div class="col"></div>
   </div>
 
-    <div class="form-group row">
-    <label class="col-sm-3 col-form-label">Last Name:</label>
-    <div class="col-sm-4">
-        <label>{{ student.last_name }} </label>
-    </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Email  :</div>
+    <div class="col">{{ student.user.email }}</div>
+    <div class="col"></div>
   </div>
 
-    <div class="form-group row">
-    <label class="col-sm-3 col-form-label">Email:</label>
-    <div class="col-sm-4">
-         <label>{{ student.email }} </label>
-    </div>
-    </div>
-
-   <div class="form-group row">
-    <label class="col-sm-3 col-form-label">Gender </label>
-    <div class="col-sm-4 ">
-         <label>{{ student.gender }} </label>
-    </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Gender :</div>
+    <div class="col">{{ student.gender }}</div>
+    <div class="col"></div>
   </div>
-  <div class="form-group row">
-    <label class="col-sm-1 col-form-label"></label>
-    <div class="col-sm-4">
 
-    <a href="/employees" class="btn btn-info">OK</a>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Session  :</div>
+    <div class="col">{{ student.session_under }}</div>
+    <div class="col"></div>
+  </div>
+
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">Date Joined  :</div>
+    <div class="col">{{ student.date_joined }}</div>
+    <div class="col"></div>
+  </div>
+  <br>
+
+
+  <div class="row">
+    <div class="col-6 col-md-4"></div>
+    <div class="col-6 col-lg-4">
+        <a href="/manage_student" class="btn btn-info "
+        style="margin:25px; padding-left: 35px;padding-right: 35px;">OK</a>
+    </div>
+    <div class="col-6 col-md-4"></div>
+  </div>
+
+    
     </div>
   </div>
 
