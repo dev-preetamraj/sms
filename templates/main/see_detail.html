@@ -4,24 +4,29 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<style>
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 16%;
+  height: 16%;
+}
+</style>
   <div class="container">
 
     <div class="container">
 <br>
 
-  <div class="row">
-    <div class="col-6 col-md-4"></div>
-    <div class="col-6 col-md-4"><h1><pre>Student Details</pre></h1></div>
-    <div class="col-6 col-md-4"></div>
-  </div>
-  <br>
+<center><h2>Students Details</h2></center>
+<br>
+  <img src="{{ student.profile_pic.url}}" width ="110" height="110" class="center">
 
+<br>
   <div class="row">
     <div class="col"></div>
-    <div class="col">Student ID  :</div>
-    <div class="col">{{ student.pk }} </div>
+    <div class="col bg-secondary">Student ID  :</div>
+    <div class="col bg-secondary">{{ student.pk }} </div>
     <div class="col"></div>
   </div>
 
@@ -34,28 +39,24 @@
 
   <div class="row">
     <div class="col"></div>
-    <div class="col">Last Name  :</div>
-    <div class="col">{{ student.user.last_name }}</div>
+    <div class="col bg-secondary">Last Name  :</div>
+    <div class="col bg-secondary">{{ student.user.last_name }}</div>
     <div class="col"></div>
   </div>
+  
   <div class="row">
     <div class="col"></div>
-    <div class="col">Profile Pic  :</div>
-    <div class="col"><img src="{{ student.profile_pic.url}}" width ="110" height="110"></div>
-    <div class="col"></div>
-  </div>
-
-  <div class="row">
-    <div class="col"></div>
-    <div class="col">Email  :</div>
-    <div class="col">{{ student.user.email }}</div>
+    <div class="col bg">Email  :</div>
+    <div class="col bg">{{ student.user.email }}</div>
     <div class="col"></div>
   </div>
 
+
+
   <div class="row">
     <div class="col"></div>
-    <div class="col">Gender :</div>
-    <div class="col">{{ student.gender }}</div>
+    <div class="col bg-secondary">Gender :</div>
+    <div class="col bg-secondary">{{ student.gender }}</div>
     <div class="col"></div>
   </div>
 
@@ -68,22 +69,16 @@
 
   <div class="row">
     <div class="col"></div>
-    <div class="col">Date Joined  :</div>
-    <div class="col">{{ student.date_joined }}</div>
+    <div class="col bg-secondary">Date Joined  :</div>
+    <div class="col bg-secondary">{{ student.date_joined }}</div>
     <div class="col"></div>
   </div>
-  <br>
+  
 
 
-  <div class="row">
-    <div class="col-6 col-md-4"></div>
-    <div class="col-6 col-lg-4">
-        <a href="/manage_student" class="btn btn-info "
+        <center><a href="/manage_student" class="btn btn-info "
         style="margin:25px; padding-left: 35px;padding-right: 35px;">OK</a>
-    </div>
-    <div class="col-6 col-md-4"></div>
-  </div>
-
+        </center>
     
     </div>
   </div>
@@ -94,8 +89,5 @@
  </div>
 
 {% endblock %}
-
-
-
 
 
