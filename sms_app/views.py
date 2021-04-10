@@ -89,6 +89,7 @@ def tables_view(request):
 
 def add_student_view(request):
     form = AddStudentForm()
+    form.fields['user'].queryset = User.objects.filter(groups__name='student')
     if request.method == 'POST':
         form = AddStudentForm(request.POST, request.FILES)
         if form.is_valid():
