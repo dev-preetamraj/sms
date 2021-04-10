@@ -7,5 +7,8 @@
     {% include 'main/navbar.html' %}
     {% block content %}
     {% endblock %}
+    {% include 'main/footer.html' %}
     {% include 'main/scripts.html' %}
+    {% block add_js%}
+{% endblock add_js %}
 </body>

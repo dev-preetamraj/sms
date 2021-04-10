@@ -1,0 +1,400 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<section class="dashboard-counts section-padding">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Count item widget-->
+        <div class="col-xl-2 col-md-4 col-6">
+          <div class="wrapper count-title d-flex">
+            <div class="icon"><i class="icon-user"></i></div>
+            <div class="name"><strong class="text-uppercase">Total Students</strong><span>All sessions</span>
+              <div class="count-number">2</div>
+              <div> <a href="{% url 'manage_student_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a></div>             
+            </div>
+          </div>
+        </div>
+        <!-- Count item widget-->
+        <div class="col-xl-2 col-md-4 col-6">
+          <div class="wrapper count-title d-flex">
+            <div class="icon"><i class="icon-user"></i></div>
+            <div class="name"><strong class="text-uppercase">Total Staffs</strong><span>All sessions</span>
+              <div class="count-number">3</div>
+              <div> <a href="{% url 'manage_student_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+        <!-- Count item widget-->
+        <div class="col-xl-2 col-md-4 col-6">
+          <div class="wrapper count-title d-flex">
+            <div class="icon"><i class="icon-check"></i></div>
+            <div class="name"><strong class="text-uppercase">Total Courses</strong><span>Last 2 months</span>
+              <div class="count-number">342</div>
+             <div> <a href="{% url 'manage_student_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+        <!-- Count item widget-->
+        <div class="col-xl-2 col-md-4 col-6">
+          <div class="wrapper count-title d-flex">
+            <div class="icon"><i class="icon-bill"></i></div>
+            <div class="name"><strong class="text-uppercase">Total Subject</strong><span>Last 2 days</span>
+              <div class="count-number">123</div>
+             <div> <a href="{% url 'manage_student_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+        <!-- Count item widget-->
+        <div class="col-xl-2 col-md-4 col-6">
+          <div class="wrapper count-title d-flex">
+            <div class="icon"><i class="icon-list"></i></div>
+            <div class="name"><strong class="text-uppercase">Reply Pendings</strong><span>Last 3 months</span>
+              <div class="count-number">92</div>
+             <div> <a href="{% url 'manage_student_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+        <!-- Count item widget-->
+        <div class="col-xl-2 col-md-4 col-6">
+          <div class="wrapper count-title d-flex">
+            <div class="icon"><i class="icon-list-1"></i></div>
+            <div class="name"><strong class="text-uppercase">Staff Leave</strong><span>Last 7 days</span>
+              <div class="count-number">70</div>
+              <div> <a href="{% url 'manage_student_view' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="charts">
+    <div class="container-fluid">
+      <!-- Page Header-->
+      <!-- <header> 
+        <h1 class="h3 display">Charts </h1>
+      </header> -->
+      <div class="row">
+        
+        <div class="col-lg-6">
+            <div class="card pie-chart-example">
+              <div class="card-header d-flex align-items-center">
+                <h4>Student and Staff Chart</h4>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="pieChart1"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card pie-chart-example">
+              <div class="card-header d-flex align-items-center">
+                <h4>Total Subject in each Course</h4>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="pieChart2"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card pie-chart-example">
+              <div class="card-header d-flex align-items-center">
+                <h4>Total Student in Each Course</h4>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="pieChart3"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card pie-chart-example">
+              <div class="card-header d-flex align-items-center">
+                <h4>Total Student in each Subject</h4>
+              </div>
+              <div class="card-body">
+                <div class="chart-container">
+                  <canvas id="pieChart4"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="col-lg-6">
+          <div class="card bar-chart-example">
+            <div class="card-header d-flex align-items-center">
+              <h4>Staff Attendence V/s Leave</h4>
+            </div>
+            <div class="card-body">
+              <canvas id="barChart1"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card bar-chart-example">
+              <div class="card-header d-flex align-items-center">
+                <h4>Student Attendence V/s Leave</h4>
+              </div>
+              <div class="card-body">
+                <canvas id="barChart2"></canvas>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+{%endblock%}
+{% block add_js %}
+<script>
+    /*global $, document, LINECHARTEXMPLE*/
+$(document).ready(function () {
+
+'use strict';
+
+var brandPrimary = 'rgba(51, 179, 90, 1)';
+
+var PIECHART1 = $('#pieChart1'),
+    PIECHART2 = $('#pieChart2'),
+    PIECHART3 = $('#pieChart3'),
+    PIECHART4 = $('#pieChart4'),
+    BARCHART1   = $('#barChart1'),
+    BARCHART2   = $('#barChart2');
+
+
+
+var pieChart1 = new Chart(PIECHART1, {
+    type: 'pie',
+    data: {
+        labels: [
+            "Students","Staffs"
+        ],
+        datasets: [
+            {
+                data: [300, 50],
+                borderWidth: [1, 1, 1],
+                backgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ]
+            }]
+        }
+});
+
+var pieChart2 = new Chart(PIECHART2, {
+    type: 'doughnut',
+    data: {
+        labels: [
+            "First",
+            "Second",
+            "Third",
+            'forth'
+        ],
+        datasets: [
+            {
+                data: [300, 50, 100,70],
+                borderWidth: [1, 1, 1],
+                backgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ]
+            }]
+        }
+});
+
+var pieChart3 = new Chart(PIECHART3, {
+    type: 'pie',
+    data: {
+        labels: [
+            "First",
+            "Second",
+            "Third",
+            'forth'
+        ],
+        datasets: [
+            {
+                data: [300, 50, 100,70],
+                borderWidth: [1, 1, 1],
+                backgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ]
+            }]
+        }
+});
+
+var pieChart4 = new Chart(PIECHART4, {
+    type: 'pie',
+    data: {
+        labels: [
+            "First",
+            "Second",
+            "Third",
+            'forth'
+        ],
+        datasets: [
+            {
+                data: [300, 50, 100,70],
+                borderWidth: [1, 1, 1],
+                backgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    brandPrimary,
+                    "rgba(75,192,192,1)",
+                    "#FFCE56"
+                ]
+            }]
+        }
+});
+
+var pieChart1, pieChart2, pieChart3, pieChart4 = {
+    responsive: true
+};
+
+var barChart1 = new Chart(BARCHART1, {
+    type: 'bar',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July","august"],
+        datasets: [
+            {
+                label: "Attendance",
+                backgroundColor: [
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)'
+                ],
+                borderWidth: 1,
+                data: [65, 59, 80, 81, 56, 55, 40],
+            },
+            {
+                label: "Leave",
+                backgroundColor: [
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)'
+                ],
+                borderWidth: 1,
+                data: [35, 40, 60, 47, 88, 27, 30],
+            }
+        ]
+    }
+});
+
+
+var barChart2 = new Chart(BARCHART2, {
+    type: 'bar',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July","august"],
+        datasets: [
+            {
+                label: "Attendance",
+                backgroundColor: [
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)',
+                    'rgba(51, 179, 90, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)',
+                    'rgba(51, 179, 90, 1)'
+                ],
+                borderWidth: 1,
+                data: [65, 59, 80, 81, 56, 55, 40],
+            },
+            {
+                label: "Leave",
+                backgroundColor: [
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)',
+                    'rgba(203, 203, 203, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)',
+                    'rgba(203, 203, 203, 1)'
+                ],
+                borderWidth: 1,
+                data: [35, 40, 60, 47, 88, 27, 30],
+            }
+        ]
+    }
+});
+
+
+
+
+});
+
+</script>
+
+{% endblock add_js %}
+  
