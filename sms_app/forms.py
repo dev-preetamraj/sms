@@ -7,10 +7,16 @@ from .views import Staff, Student
 
 
 class RegisterUserForm(UserCreationForm):
+    USERTYPE = (
+        ('hod','hod'),
+        ('staff', 'staff'),
+        ('student', 'student')
+    )
+    user_type = forms.ChoiceField(choices=USERTYPE)
     class Meta:
         model = User
         fields = ['username', 'email', 'password1',
-                  'password2', 'first_name', 'last_name']
+                  'password2', 'first_name', 'last_name','user_type']
 
         widgets = {
             'username': forms.TextInput(attrs={'class': 'input-material'}),

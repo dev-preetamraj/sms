@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
 from .models import Staff, Student
+from django.contrib.auth.models import User, Group
 from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import DetailView
@@ -25,7 +26,16 @@ def register_user_view(request):
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user_save = form.save()
+            if form.cleaned_data.get('user_type') == 'hod':
+                set_group = Group.objects.get(name='hod')
+                user_save.groups.add(set_group)
+            elif form.cleaned_data.get('user_type') == 'staff':
+                set_group = Group.objects.get(name='staff')
+                user_save.groups.add(set_group)
+            else:
+                set_group = Group.objects.get(name='student')
+                user_save.groups.add(set_group)
             return redirect('admin_dashboard')
         else:
             return redirect('register_user')
