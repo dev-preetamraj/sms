@@ -5,88 +5,89 @@
 <script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
-    .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 16%;
-  height: 16%;
+
+.container{
+  max-width:550px;
+
 }
 </style>
-  <div class="container">
-
-    <div class="container">
 <br>
 
-<center><h2>Students Details</h2></center>
-<br>
-  <img src="{{ student.profile_pic.url}}" width ="110" height="110" class="center">
-
-<br>
-  <div class="row">
-    <div class="col"></div>
-    <div class="col bg-secondary">Student ID  :</div>
-    <div class="col bg-secondary">{{ student.pk }} </div>
-    <div class="col"></div>
+<div class="container">
+  <div>
+    <center><h2>Student Details</h2></center>
+    <center>
+      <hr>
+       <img src="{{ student.profile_pic.url}}" 
+       class="border border-dark  border-5"style= "border-radius:50%;"
+        width="145" height="145">
+    </center>
+    <p></p>
   </div>
+  <table class="table table-striped">
+   
+    <tbody>
 
-  <div class="row">
-    <div class="col"></div>
-    <div class="col">First Name :</div>
-    <div class="col">{{ student.user.first_name }}</div>
-    <div class="col"></div>
-  </div>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Full Name</b></td>
+        <td>:</td>
+        <td>{{ student.user.first_name }} {{ student.user.last_name }}</td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Students ID</b></td>
+        <td>:</td>
+        <td>{{ student.pk }} </td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Email</b</td>
+        <td>:</td>
+        <td>{{ student.user.email }}</td>
 
-  <div class="row">
-    <div class="col"></div>
-    <div class="col bg-secondary">Last Name  :</div>
-    <div class="col bg-secondary">{{ student.user.last_name }}</div>
-    <div class="col"></div>
-  </div>
-  
-  <div class="row">
-    <div class="col"></div>
-    <div class="col bg">Email  :</div>
-    <div class="col bg">{{ student.user.email }}</div>
-    <div class="col"></div>
-  </div>
+      </tr>
+          
+      <tr>
+        <th scope="row"></th>
+        <td><b>Gender</b></td>
+        <td>:</td>
+        <td>{{ student.gender }}</td>
+      </tr>  
+      <tr>
+        <th scope="row"></th>
+        <td><b>Courses</b></td>
+        <td>:</td>
+        <td>{{ student.courses_taken }}</td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Address</b></td>
+        <td>:</td>
+        <td>{{ student.address }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row"></th>
+        <td><b>Session</b></td>
+        <td>:</td>
+        <td>{{ student.session_under }}</td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Date Joined</b></td>
+        <td>:</td>
+        <td>{{ student.date_joined }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <center><a href="/manage_student" class="btn btn-info "
+    style="margin:25px; padding-left: 35px;padding-right: 35px;">OK</a>
+    </center>
+</div>
 
 
 
-  <div class="row">
-    <div class="col"></div>
-    <div class="col bg-secondary">Gender :</div>
-    <div class="col bg-secondary">{{ student.gender }}</div>
-    <div class="col"></div>
-  </div>
-
-  <div class="row">
-    <div class="col"></div>
-    <div class="col">Session  :</div>
-    <div class="col">{{ student.session_under }}</div>
-    <div class="col"></div>
-  </div>
-
-  <div class="row">
-    <div class="col"></div>
-    <div class="col bg-secondary">Date Joined  :</div>
-    <div class="col bg-secondary">{{ student.date_joined }}</div>
-    <div class="col"></div>
-  </div>
-  
-
-
-        <center><a href="/manage_student" class="btn btn-info "
-        style="margin:25px; padding-left: 35px;padding-right: 35px;">OK</a>
-        </center>
-    
-    </div>
-  </div>
-
-    </div>
-
-
- </div>
 
 {% endblock %}
 
