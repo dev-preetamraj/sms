@@ -16,7 +16,9 @@ def admin_dashboard(request):
         'staff_count': staff_count
     }
     return render(request, 'main/dashboard.html', context)
-
+def hod_dashboard(req):
+    context = {}
+    return render(req, "main/hod_dashboard.html", context)
 
 def register_user_view(request):
     form = RegisterUserForm()
