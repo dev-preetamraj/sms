@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
-from .models import Staff, Student
+from .models import Staff, Student, Course, Subject
 from django.contrib.auth.models import User, Group
 from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -18,7 +18,20 @@ def admin_dashboard(request):
     }
     return render(request, 'main/dashboard.html', context)
 def hod_dashboard(req):
-    context = {}
+    students = Student.objects.all()
+    student_count = students.count()
+    staffs = Staff.objects.all()
+    staff_count = staffs.count()
+    courses = Course.objects.all()
+    course_count = courses.count()
+    subjects = Subject.objects.all()
+    subject_count = subjects.count()
+    context = {
+        'student_count': student_count,
+        'staff_count': staff_count,
+        'course_count': course_count,
+        'subject_count': subject_count
+    }
     return render(req, "main/hod_dashboard.html", context)
 
 def register_user_view(request):
