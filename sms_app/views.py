@@ -84,6 +84,15 @@ def manage_student_view(request):
     }
     return render(request, 'main/manage_student.html', context)
 
+def manage_staff_view(request):
+    staffs = Staff.objects.all()
+
+    context = {
+        'staffs': staffs,
+    }
+    return render(request, 'main/manage_staff.html', context)
+
+
 
 def login_view(req):
     context = {}
@@ -147,3 +156,43 @@ def see_detail_view(request, pk):
 
     context = {'student': stu}
     return render(request, 'main/see_detail.html', context)
+
+def add_staff_view(request):
+    form = AddStaffForm()
+    if request.method == 'POST':
+        form = AddStaffForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_staff_view')
+    context = {
+        'form': form
+    }
+    return render(request, 'main/add_staff.html', context)
+
+
+def update_staff_view(request, pk):
+    staffs = Staff.objects.get(id=pk)
+    form = AddStaffForm(instance=staffs)
+    if request.method == 'POST':
+        form = AddStaffForm(request.POST, request.FILES, instance=staffs)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_staff_view')
+    context = {
+        'form': form
+    }
+    return render(request, 'main/update_staff.html', context)
+
+
+def delete_staff_view(request, pk):
+    staffs = Staff.objects.get(id=pk)
+    if request.method == "POST":
+        staffs.user.delete()
+        return redirect('manage_staff_view')
+    context = {'item': staffs}
+    return render(request, 'main/delete_staff.html', context)
+
+def see_detail_staff_view(request,pk):
+    sta = Staff.objects.get(id=pk)
+    context ={'staff':sta}
+    return render(request,'main/see_detail_staff.html',context)
