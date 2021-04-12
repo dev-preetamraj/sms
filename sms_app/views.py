@@ -56,20 +56,6 @@ def register_user_view(request):
     return render(request, 'accounts/add_user.html', context)
 
 
-def add_staff(request):
-    form = AddStaffForm()
-    if request.method == 'POST':
-        form = AddStaffForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('admin_dashboard')
-        else:
-            return redirect('add_staff')
-
-    context = {'form': form}
-    return render(request, 'app/add_staff.html', context)
-
-
 def charts_view(req):
     context = {}
     return render(req, 'main/charts.html', context)
@@ -172,14 +158,18 @@ def add_staff_view(request):
 
 def update_staff_view(request, pk):
     staffs = Staff.objects.get(id=pk)
-    form = AddStaffForm(instance=staffs)
+    staff_form = AddStaffForm(instance=staffs)
+    user_form = UpdateUserForm(instance=staffs.user)
     if request.method == 'POST':
-        form = AddStaffForm(request.POST, request.FILES, instance=staffs)
-        if form.is_valid():
-            form.save()
+        staff_form = AddStaffForm(request.POST, request.FILES, instance=staffs)
+        user_form = UpdateUserForm(request.POST,instance=staffs.user)
+        if staff_form.is_valid() and user_form.is_valid():
+            staff_form.save()
+            user_form.save()
             return redirect('manage_staff_view')
     context = {
-        'form': form
+        'user_form': user_form,
+        'staff_form': staff_form
     }
     return render(request, 'main/update_staff.html', context)
 
