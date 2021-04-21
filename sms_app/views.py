@@ -186,3 +186,7 @@ def see_detail_staff_view(request,pk):
     sta = Staff.objects.get(id=pk)
     context ={'staff':sta}
     return render(request,'main/see_detail_staff.html',context)
+
+def result_view(request):
+    context = {}
+    return render(request, 'main/result.html', context)
