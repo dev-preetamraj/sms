@@ -1,8 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+<head>
 {% include 'main/head.html' %}
-
+{% block add_css %}
+{% endblock add_css %}
+</head>
 <body>
     {% include 'main/navbar.html' %}
     {% block content %}

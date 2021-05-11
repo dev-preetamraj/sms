@@ -77,8 +77,33 @@ def manage_staff_view(request):
         'staffs': staffs,
     }
     return render(request, 'main/manage_staff.html', context)
+def manage_courses_view(request):
+    
+    context = {
+        
+    }
+    return render(request, 'main/manage_courses.html', context)
 
+def manage_subjects_view(request):
+    
+    context = {
+        
+    }
+    return render(request, 'main/manage_subjects.html', context)
 
+def manage_sessions_view(request):
+    
+    context = {
+        
+    }
+    return render(request, 'main/manage_sessions.html', context)
+
+def view_attendance(request):
+    
+    context = {
+        
+    }
+    return render(request, 'main/view_attendance.html', context)
 
 def login_view(req):
     context = {}
