@@ -23,3 +23,7 @@
     display:flex;
     justify-content: center;
 } */
+.back_color{
+    background-color: #9055a2;
+    color:white;
+}

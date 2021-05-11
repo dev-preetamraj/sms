@@ -18,26 +18,28 @@
             <h5 class="sidenav-heading">Main</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
                 <li><a href="{% url 'hod_dashboard' %}"> <i class="icon-home"></i>Dashboard </a></li>
-                <li><a href="{% url 'admin_dashboard' %}"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="{% url 'register_user' %}"> <i class="icon-user"></i>Add User </a></li>
-                <li><a href="{% url 'charts_view' %}"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-                <li><a href="{% url 'test-view' %}"> <i class="fa fa-bar-chart"></i>Test </a></li>
-                <li><a href="{% url 'result-view' %}"> <i class="fa fa-bar-chart"></i>Result </a></li>
-                <li><a href="{% url 'manage_student_view' %}"> <i class="icon-grid"></i>Manage Students </a></li>
-                <li><a href="{% url 'manage_staff_view' %}"> <i class="icon-grid"></i>Manage Staffs </a></li>
-                <li><a href="{% url 'manage_courses_view' %}"> <i class="icon-grid"></i>Manage Courses </a></li>
-                <li><a href="{% url 'manage_subjects_view' %}"> <i class="icon-grid"></i>Manage Subjects </a></li>
-                <li><a href="{% url 'manage_sessions_view' %}"> <i class="icon-grid"></i>Manage Sessions </a></li>
-                <li><a href="{% url 'view_attendance' %}"> <i class="icon-grid"></i>View Attendance </a></li>
-                <li><a href="{% url 'tables_view' %}"> <i class="icon-grid"></i>Tables </a></li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
-                            class="icon-interface-windows"></i>Example dropdown </a>
+                <li><a href="{% url 'manage_staff_view' %}"> <i class="fa fa-address-book-o"></i>Manage Staffs </a></li>
+                <li><a href="{% url 'manage_student_view' %}"> <i class="fa fa-graduation-cap"></i>Manage Students </a></li>
+                <li><a href="{% url 'manage_courses_view' %}"> <i class="icon-screen"></i>Manage Courses </a></li>
+                <li><a href="{% url 'manage_subjects_view' %}"> <i class="fa fa-book"></i>Manage Subjects </a></li>
+                <li><a href="{% url 'manage_sessions_view' %}"> <i class="fa fa-calendar-check-o"></i>Manage Sessions </a></li>
+                <li><a href="{% url 'view_attendance' %}"> <i class="fa fa-calendar"></i>View Attendance </a></li>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Feedback and Leave </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
-                        <li><a href="#">Page</a></li>
+                        <li><a href="{% url 'staff_feedback_view' %}"> <i class="icon-grid"></i>Staff Feedback </a></li>
+                        <li><a href="{% url 'students_feedback_view' %}"> <i class="icon-grid"></i>Student Feedback </a></li>
+                        <li><a href="{% url 'staff_leave_view' %}"> <i class="icon-grid"></i>Staff Leave </a></li>
+                        <li><a href="{% url 'student_leave_view' %}"> <i class="icon-grid"></i>Student Leave </a></li>
                     </ul>
                 </li>
+
+                <li><a href="{% url 'admin_dashboard' %}"> <i class="icon-home"></i>Home </a></li>
+                <li><a href="{% url 'charts_view' %}"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                <li><a href="{% url 'test-view' %}"> <i class="fa fa-bar-chart"></i>Test </a></li>
+                <li><a href="{% url 'result-view' %}"> <i class="icon-grid"></i>Result </a></li>
+                <li><a href="{% url 'tables_view' %}"> <i class="icon-grid"></i>Tables </a></li>
+                
                 <li><a href="{% url 'login_view' %}"> <i class="icon-interface-windows"></i>Login page </a></li>
                 <li> <a href="#"> <i class="icon-mail"></i>Demo
                         <div class="badge badge-warning">6 New</div>
