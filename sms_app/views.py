@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
 from .models import Staff, Student, Course, Subject
 from django.contrib.auth.models import User, Group
-from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm
+from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import DetailView
 
@@ -17,6 +17,8 @@ def admin_dashboard(request):
         'staff_count': staff_count
     }
     return render(request, 'main/dashboard.html', context)
+
+
 def hod_dashboard(req):
     students = Student.objects.all()
     student_count = students.count()
@@ -33,6 +35,7 @@ def hod_dashboard(req):
         'subject_count': subject_count
     }
     return render(req, "main/hod_dashboard.html", context)
+
 
 def register_user_view(request):
     form = RegisterUserForm()
@@ -70,6 +73,7 @@ def manage_student_view(request):
     }
     return render(request, 'main/manage_student.html', context)
 
+
 def manage_staff_view(request):
     staffs = Staff.objects.all()
 
@@ -78,37 +82,63 @@ def manage_staff_view(request):
     }
     return render(request, 'main/manage_staff.html', context)
 
+
 def manage_courses_view(request):
-    context = {}
+    courses = Course.objects.all()
+    context = {
+        'courses': courses
+    }
     return render(request, 'main/manage_courses.html', context)
+
+
+def add_course_view(request):
+    form = AddCourseForm()
+    if request.method == 'POST':
+        form = AddCourseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_courses_view')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'main/add_course.html', context)
+
 
 def manage_subjects_view(request):
     context = {}
     return render(request, 'main/manage_subjects.html', context)
 
+
 def manage_sessions_view(request):
     context = {}
     return render(request, 'main/manage_sessions.html', context)
+
 
 def view_attendance(request):
     context = {}
     return render(request, 'main/view_attendance.html', context)
 
+
 def staff_feedback_view(request):
-    context = {}    
+    context = {}
     return render(request, 'main/staff_feedback.html', context)
 
+
 def students_feedback_view(request):
-    context = {}    
+    context = {}
     return render(request, 'main/students_feedback.html', context)
 
+
 def staff_leave_view(request):
-    context = {}    
+    context = {}
     return render(request, 'main/staff_leave.html', context)
 
+
 def student_leave_view(request):
-    context = {}    
+    context = {}
     return render(request, 'main/students_leave.html', context)
+
 
 def login_view(req):
     context = {}
@@ -173,6 +203,7 @@ def see_detail_view(request, pk):
     context = {'student': stu}
     return render(request, 'main/see_detail.html', context)
 
+
 def add_staff_view(request):
     form = AddStaffForm()
     if request.method == 'POST':
@@ -192,7 +223,7 @@ def update_staff_view(request, pk):
     user_form = UpdateUserForm(instance=staffs.user)
     if request.method == 'POST':
         staff_form = AddStaffForm(request.POST, request.FILES, instance=staffs)
-        user_form = UpdateUserForm(request.POST,instance=staffs.user)
+        user_form = UpdateUserForm(request.POST, instance=staffs.user)
         if staff_form.is_valid() and user_form.is_valid():
             staff_form.save()
             user_form.save()
@@ -212,10 +243,12 @@ def delete_staff_view(request, pk):
     context = {'item': staffs}
     return render(request, 'main/delete_staff.html', context)
 
-def see_detail_staff_view(request,pk):
+
+def see_detail_staff_view(request, pk):
     sta = Staff.objects.get(id=pk)
-    context ={'staff':sta}
-    return render(request,'main/see_detail_staff.html',context)
+    context = {'staff': sta}
+    return render(request, 'main/see_detail_staff.html', context)
+
 
 def result_view(request):
     context = {}

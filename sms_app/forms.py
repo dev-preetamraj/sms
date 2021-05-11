@@ -3,20 +3,22 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .views import Staff, Student
+# from .views import Staff, Student
+from .models import Course, Staff, Student
 
 
 class RegisterUserForm(UserCreationForm):
     USERTYPE = (
-        ('hod','hod'),
+        ('hod', 'hod'),
         ('staff', 'staff'),
         ('student', 'student')
     )
     user_type = forms.ChoiceField(choices=USERTYPE)
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password1',
-                  'password2', 'first_name', 'last_name','user_type']
+                  'password2', 'first_name', 'last_name', 'user_type']
 
         widgets = {
             'username': forms.TextInput(attrs={'class': 'input-material'}),
@@ -44,3 +46,9 @@ class UpdateUserForm(ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name']
+
+
+class AddCourseForm(ModelForm):
+    class Meta:
+        model = Course
+        fields = '__all__'
