@@ -27,6 +27,8 @@ urlpatterns = [
     path('student_leave/', views.student_leave_view, name='student_leave_view'),
     path('add_student/', views.add_student_view, name='add_student'),
     path('add_staff/', views.add_staff_view, name='add_staff'),
+     path('add_subjects/', views.add_subjects_view, name='add_subjects'),
+     path('add_session/', views.add_session_view, name='add_session'),
     path('update_student/<str:pk>',
          views.update_student_view, name='update_student'),
     path('update_staff/<str:pk>',

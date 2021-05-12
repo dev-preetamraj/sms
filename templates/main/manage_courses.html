@@ -2,6 +2,9 @@
 {% load static %}
 {% block add_css %}
 <style>
+  .table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #c5c9ca;
+}
   .fa-trash,
   .fa-edit {
     margin: 5px;
@@ -54,7 +57,7 @@
           <!--Table Content-->
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th>Course Id</th>

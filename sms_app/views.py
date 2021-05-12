@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
 from .models import Staff, Student, Course, Subject
 from django.contrib.auth.models import User, Group
-from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm
+from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm, AddSubjectForm, AddSessionForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import DetailView
 
@@ -108,6 +108,33 @@ def add_course_view(request):
 def manage_subjects_view(request):
     context = {}
     return render(request, 'main/manage_subjects.html', context)
+
+def add_subjects_view(request):
+    form = AddSubjectForm()
+    if request.method == 'POST':
+        form = AddSubjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_subjects_view')
+    context = {
+        'form': form
+    }
+    return render(request, 'main/add_subjects.html', context)
+
+def add_session_view(request):
+    form = AddSessionForm()
+    if request.method == 'POST':
+        form = AddSessionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_sessions_view')
+    context = {
+        'form': form
+    }
+    return render(request, 'main/add_session.html', context)
+
+
+
 
 
 def manage_sessions_view(request):
