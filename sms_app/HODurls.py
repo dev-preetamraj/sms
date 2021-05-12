@@ -1,7 +1,9 @@
 from django.urls import path
 from . import views
+from . import student_views
 urlpatterns = [
     path("", views.hod_dashboard, name='hod_dashboard'),
+
     path('dashboard/', views.admin_dashboard, name='admin_dashboard'),
 
     path('add_user/', views.register_user_view, name='register_user'),
@@ -38,6 +40,22 @@ urlpatterns = [
     path('delete_staff/<str:pk>', views.delete_staff_view, name='delete_staff'),
     path('see_detail/<str:pk>', views.see_detail_view, name='see_detail'),
     path('see_detail_staff/<str:pk>',
-         views.see_detail_staff_view, name='see_detail_staff')
+         views.see_detail_staff_view, name='see_detail_staff'),
 
+
+
+
+
+
+
+
+
+
+#urls for students -----------------------------------------------------------------
+#urls for students -----------------------------------------------------------------
+     path("student_home", student_views.student_home_view, name='student_home'),
+     path("student_view_attendence", student_views.student_view_attendence_view, name='student_view_attendence'),
+     path("student_result", student_views.student_result_view, name='student_result'),
+     path("student_apply_leave/<str:pk>", student_views.student_apply_leave_view, name='student_apply_leave'),
+     path("student_send_feedback", student_views.student_send_feedback_view, name='student_send_feedback'),
 ]

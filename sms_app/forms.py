@@ -61,3 +61,15 @@ class UpdateUserForm(ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name']
+
+
+
+
+#Students Templates Form ===========================================================================
+#Students Templates Form ===========================================================================
+
+class StudentLeaveForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
