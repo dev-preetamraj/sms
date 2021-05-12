@@ -4,8 +4,8 @@
 <br>
 <br>
 <style>
-.table tbody tr:hover td, .table tbody tr:hover th {
-    background-color: #c5c9ca;
+    .table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #daf4fa;
 }
 </style>
 <div class="container " style="max-width: 580px;">
@@ -18,10 +18,8 @@
             <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
      
-            {{user_form.as_table}}
-          
-            {{staff_form.as_table}}
-            
+            {{form.as_table}}
+  
 
         </tbody>
     

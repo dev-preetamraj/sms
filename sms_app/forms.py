@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 # from .views import Staff, Student
-from .models import Course, Staff, Student
+from .models import Course, Staff, Student, Subject, SessionYear
 
 
 class RegisterUserForm(UserCreationForm):
@@ -41,14 +41,23 @@ class AddStudentForm(ModelForm):
         model = Student
         fields = '__all__'
 
+class AddCourseForm(ModelForm):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+class AddSubjectForm(ModelForm):
+    class Meta:
+        model = Subject
+        fields = '__all__'
+
+class AddSessionForm(ModelForm):
+    class Meta:
+        model = SessionYear
+        fields = '__all__'
+
 
 class UpdateUserForm(ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name']
-
-
-class AddCourseForm(ModelForm):
-    class Meta:
-        model = Course
-        fields = '__all__'
