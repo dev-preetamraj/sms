@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+{% include 'student/head.html' %}
+{% block add_css %}
+{% endblock add_css %}
+</head>
+<body>
+    {% include 'student/navbar.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'student/footer.html' %}
+    {% include 'student/scripts.html' %}
+    {% block add_js%}
+{% endblock add_js %}
+</body>
