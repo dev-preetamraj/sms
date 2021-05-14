@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+{% include 'HOD/head.html' %}
+{% block add_css %}
+{% endblock add_css %}
+</head>
+<body>
+    {% include 'HOD/navbar.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'HOD/footer.html' %}
+    {% include 'HOD/scripts.html' %}
+    {% block add_js%}
+{% endblock add_js %}
+</body>

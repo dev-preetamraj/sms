@@ -16,7 +16,7 @@ def admin_dashboard(request):
         'student_count': student_count,
         'staff_count': staff_count
     }
-    return render(request, 'main/dashboard.html', context)
+    return render(request, 'HOD/dashboard.html', context)
 
 
 def hod_dashboard(req):
@@ -34,7 +34,7 @@ def hod_dashboard(req):
         'course_count': course_count,
         'subject_count': subject_count
     }
-    return render(req, "main/hod_dashboard.html", context)
+    return render(req, "HOD/hod_dashboard.html", context)
 
 
 def register_user_view(request):
@@ -61,7 +61,7 @@ def register_user_view(request):
 
 def charts_view(req):
     context = {}
-    return render(req, 'main/charts.html', context)
+    return render(req, 'HOD/charts.html', context)
 
 
 def manage_student_view(request):
@@ -71,7 +71,7 @@ def manage_student_view(request):
         'students': students,
 
     }
-    return render(request, 'main/manage_student.html', context)
+    return render(request, 'HOD/manage_student.html', context)
 
 
 def manage_staff_view(request):
@@ -80,7 +80,7 @@ def manage_staff_view(request):
     context = {
         'staffs': staffs,
     }
-    return render(request, 'main/manage_staff.html', context)
+    return render(request, 'HOD/manage_staff.html', context)
 
 
 def manage_courses_view(request):
@@ -88,7 +88,7 @@ def manage_courses_view(request):
     context = {
         'courses': courses
     }
-    return render(request, 'main/manage_courses.html', context)
+    return render(request, 'HOD/manage_courses.html', context)
 
 
 def add_course_view(request):
@@ -102,12 +102,12 @@ def add_course_view(request):
     context = {
         'form': form
     }
-    return render(request, 'main/add_course.html', context)
+    return render(request, 'HOD/add_course.html', context)
 
 
 def manage_subjects_view(request):
     context = {}
-    return render(request, 'main/manage_subjects.html', context)
+    return render(request, 'HOD/manage_subjects.html', context)
 
 def add_subjects_view(request):
     form = AddSubjectForm()
@@ -119,7 +119,7 @@ def add_subjects_view(request):
     context = {
         'form': form
     }
-    return render(request, 'main/add_subjects.html', context)
+    return render(request, 'HOD/add_subjects.html', context)
 
 def add_session_view(request):
     form = AddSessionForm()
@@ -131,7 +131,7 @@ def add_session_view(request):
     context = {
         'form': form
     }
-    return render(request, 'main/add_session.html', context)
+    return render(request, 'HOD/add_session.html', context)
 
 
 
@@ -139,47 +139,47 @@ def add_session_view(request):
 
 def manage_sessions_view(request):
     context = {}
-    return render(request, 'main/manage_sessions.html', context)
+    return render(request, 'HOD/manage_sessions.html', context)
 
 
 def view_attendance(request):
     context = {}
-    return render(request, 'main/view_attendance.html', context)
+    return render(request, 'HOD/view_attendance.html', context)
 
 
 def staff_feedback_view(request):
     context = {}
-    return render(request, 'main/staff_feedback.html', context)
+    return render(request, 'HOD/staff_feedback.html', context)
 
 
 def students_feedback_view(request):
     context = {}
-    return render(request, 'main/students_feedback.html', context)
+    return render(request, 'HOD/students_feedback.html', context)
 
 
 def staff_leave_view(request):
     context = {}
-    return render(request, 'main/staff_leave.html', context)
+    return render(request, 'HOD/staff_leave.html', context)
 
 
 def student_leave_view(request):
     context = {}
-    return render(request, 'main/students_leave.html', context)
+    return render(request, 'HOD/students_leave.html', context)
 
 
 def login_view(req):
     context = {}
-    return render(req, 'main/login.html', context)
+    return render(req, 'HOD/login.html', context)
 
 
 def test_view(request):
     context = {}
-    return render(request, 'main/test.html', context)
+    return render(request, 'HOD/test.html', context)
 
 
 def tables_view(request):
     context = {}
-    return render(request, 'main/tables.html', context)
+    return render(request, 'HOD/tables.html', context)
 
 
 def add_student_view(request):
@@ -193,7 +193,7 @@ def add_student_view(request):
     context = {
         'form': form
     }
-    return render(request, 'main/add_student.html', context)
+    return render(request, 'HOD/add_student.html', context)
 
 
 def update_student_view(request, pk):
@@ -212,7 +212,7 @@ def update_student_view(request, pk):
         'student_form': student_form,
         'user_form': user_form
     }
-    return render(request, 'main/update_student.html', context)
+    return render(request, 'HOD/update_student.html', context)
 
 
 def delete_student_view(request, pk):
@@ -221,14 +221,14 @@ def delete_student_view(request, pk):
         students.user.delete()
         return redirect('manage_student_view')
     context = {'item': students}
-    return render(request, 'main/delete_student.html', context)
+    return render(request, 'HOD/delete_student.html', context)
 
 
 def see_detail_view(request, pk):
     stu = Student.objects.get(id=pk)
 
     context = {'student': stu}
-    return render(request, 'main/see_detail.html', context)
+    return render(request, 'HOD/see_detail.html', context)
 
 
 def add_staff_view(request):
@@ -241,7 +241,7 @@ def add_staff_view(request):
     context = {
         'form': form
     }
-    return render(request, 'main/add_staff.html', context)
+    return render(request, 'HOD/add_staff.html', context)
 
 
 def update_staff_view(request, pk):
@@ -259,7 +259,7 @@ def update_staff_view(request, pk):
         'user_form': user_form,
         'staff_form': staff_form
     }
-    return render(request, 'main/update_staff.html', context)
+    return render(request, 'HOD/update_staff.html', context)
 
 
 def delete_staff_view(request, pk):
@@ -268,15 +268,15 @@ def delete_staff_view(request, pk):
         staffs.user.delete()
         return redirect('manage_staff_view')
     context = {'item': staffs}
-    return render(request, 'main/delete_staff.html', context)
+    return render(request, 'HOD/delete_staff.html', context)
 
 
 def see_detail_staff_view(request, pk):
     sta = Staff.objects.get(id=pk)
     context = {'staff': sta}
-    return render(request, 'main/see_detail_staff.html', context)
+    return render(request, 'HOD/see_detail_staff.html', context)
 
 
 def result_view(request):
     context = {}
-    return render(request, 'main/result.html', context)
+    return render(request, 'HOD/result.html', context)
