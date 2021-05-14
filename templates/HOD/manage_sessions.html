@@ -1,0 +1,113 @@
+{% extends 'HOD/base.html' %}
+{% load static %}
+{% block add_css %}
+<style>
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #c5c9ca;
+}
+.fa-trash, .fa-edit {
+    margin: 5px;
+    padding: 8px 13px;
+}
+.fa-edit {
+    margin:5px;
+    padding:8px 12px;
+}
+</style>
+{% endblock add_css%}
+
+{% block content %}
+
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'hod_dashboard' %}">Dashboard</a></li>
+        <li class="breadcrumb-item active">Manage Sessions</li>
+      </ul>
+    </div>
+</div>
+<section>
+    <div class="container-fluid">
+        <header> 
+            <h1 class="h3 display">Manage Sessions</h1><br> 
+            <a href="{% url 'add_session' %}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">+ Add Session</a>
+        </header>
+        
+        <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                
+                <!--Card Head-->
+                <div class="card-header">
+                    <h4 class="card-title">Session Details</h4>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Table Content-->
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Session Start Year</th>
+                          <th>Session End Year</th>
+                          <th class="action">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>                    
+                          <td>
+                            <div class="action">
+                                <a href="#" title="edit"><button type="button" class="btn  btn-primary  fa fa-edit"></button></a>
+                                
+                                <a href="#" title="delete"><button type="button" class="btn btn-danger  fa fa-trash"></button></a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                          <td>
+                            <div class="action">
+                                <a href="#" title="edit"><button type="button" class="btn  btn-primary  fa fa-edit"></button></a>
+                                
+                                <a href="#" title="delete"><button type="button" class="btn btn-danger  fa fa-trash"></button></a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>Larry</td>
+                          <td>the Bird</td>
+                          <td>
+                            <div class="action">
+                                <a href="#" title="edit"><button type="button" class="btn  btn-primary  fa fa-edit"></button></a>
+                                
+                                <a href="#" title="delete"><button type="button" class="btn btn-danger  fa fa-trash"></button></a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div> 
+</section>
+
+{% endblock %}

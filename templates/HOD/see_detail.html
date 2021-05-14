@@ -1,0 +1,94 @@
+{% extends 'HOD/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+
+.container{
+  max-width:550px;
+
+}
+</style>
+<br>
+
+<div class="container">
+  <div>
+    <center><h2>Student Details</h2></center>
+    <center>
+      <hr>
+       <img src="{{ student.profile_pic.url}}" 
+       class="border border-dark  border-5"style= "border-radius:50%;"
+        width="145" height="145">
+    </center>
+    <p></p>
+  </div>
+  <table class="table table-striped">
+   
+    <tbody>
+
+      <tr>
+        <th scope="row"></th>
+        <td><b>Full Name</b></td>
+        <td>:</td>
+        <td>{{ student.user.first_name }} {{ student.user.last_name }}</td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Students ID</b></td>
+        <td>:</td>
+        <td>{{ student.pk }} </td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Email</b</td>
+        <td>:</td>
+        <td>{{ student.user.email }}</td>
+
+      </tr>
+          
+      <tr>
+        <th scope="row"></th>
+        <td><b>Gender</b></td>
+        <td>:</td>
+        <td>{{ student.gender }}</td>
+      </tr>  
+      <tr>
+        <th scope="row"></th>
+        <td><b>Courses</b></td>
+        <td>:</td>
+        <td>{{ student.courses_taken }}</td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Address</b></td>
+        <td>:</td>
+        <td>{{ student.address }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row"></th>
+        <td><b>Session</b></td>
+        <td>:</td>
+        <td>{{ student.session_under }}</td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td><b>Date Joined</b></td>
+        <td>:</td>
+        <td>{{ student.date_joined }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <center><a href="/manage_student" class="btn btn-info "
+    style="margin:25px; padding-left: 35px;padding-right: 35px;">OK</a>
+    </center>
+</div>
+
+
+
+
+{% endblock %}
+
+

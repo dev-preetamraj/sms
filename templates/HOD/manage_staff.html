@@ -1,0 +1,132 @@
+{% extends 'HOD/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #daf4fa;
+}
+.btn-change{
+
+    background: rgb(4, 179, 42);
+    margin: 20px;
+    float: left;
+    box-shadow: 0 0 1px #ccc;
+    transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    border: 0px;
+    color: #fff;
+}
+.btn-change:hover{
+  transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    background: #31708f;
+}
+.btn-change1{
+
+background: rgb(230, 136, 12);
+margin: 20px;
+float: left;
+box-shadow: 0 0 1px #ccc;
+transition: all 0.5s ease-in-out;
+-webkit-transition: all 0.5s ease-in-out;
+border: 0px;
+color: #fff;
+}
+.btn-change1:hover{
+  transform: scale(1.1);
+-webkit-transform: scale(1.1);
+background: #b3b603;
+}
+.btn-change2{
+
+background: rgb(230, 44, 12);
+margin: 20px;
+float: left;
+box-shadow: 0 0 1px #ccc;
+transition: all 0.5s ease-in-out;
+-webkit-transition: all 0.5s ease-in-out;
+border: 0px;
+color: #fff;
+}
+.btn-change2:hover{
+  transform: scale(1.1);
+-webkit-transform: scale(1.1);
+background: #f80a02;
+}
+th{
+  align-items: center;
+}
+</style>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h3> Manage Staff</h3>
+        <br>
+        <a href="{% url 'add_staff' %}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">+ Add
+          Staffs</a>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover table-sm">
+            <thead >
+              <tr class="text-center">
+                <th>ID</th>
+                <th class="text-center">First Name</center>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Email</th>
+         
+                <th>Gender</th>
+         
+
+       
+
+                <th>Date Joined</th>
+                
+                <th>Action </th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for staff in staffs %}
+              <tr class="text-center">
+                <th scope="row">{{staff.id}}</th>
+                <td>{{staff.user.first_name}}</td>
+                <td>{{staff.user.last_name}}</td>
+                <td>{{staff.user.username}}</td>
+                <td>{{staff.user.email}}</td>
+         
+                <td>{{staff.gender}}</td>
+           
+     
+  
+                <td>{{staff.date_joined}}</td>
+
+
+                <td>
+                  <div>
+                  <a href="{% url 'update_staff' staff.pk %}"><button type="button" class="btn  btn-primary  fa fa-edit"
+                  style="margin:3px"></button></a>
+                  <a href="{% url 'see_detail_staff' staff.pk %}"><button type="button" class="btn  btn-info  fa fa-eye"
+                  style="margin:3px"></button></a>
+                  <a href="{% url 'delete_staff' staff.pk %}"><button type="button" class="btn btn-danger  fa fa-trash"
+                  style="margin: 3px"></button></a>
+                
+                  </div>
+                </td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock %}
