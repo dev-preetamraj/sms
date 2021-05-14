@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
 from .models import Staff, Student, Course, Subject, Student_Leave
 from django.contrib.auth.models import User, Group
-from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm, AddSubjectForm, AddSessionForm, StudentLeaveForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import DetailView
 
@@ -12,21 +11,21 @@ def student_home_view(request):
     context={
        "Hello":"Home"
     }
-    return render(request, "student/student_home.html", context)    
+    return render(request, "Student/student_home.html", context)    
 
 def student_view_attendence_view(request):
 
     context = {
         "Hello":"Hello"
     }
-    return render(request,"student/student_view_attendence.html",context)
+    return render(request,"Student/student_view_attendence.html",context)
 
 def student_result_view(request):
 
     context = {
         "Hello":"Hello"
     }
-    return render(request,"student/student_result.html",context)
+    return render(request,"Student/student_result.html",context)
 
 def student_apply_leave_view(request,pk):
     student_obj = Student.objects.get(id = pk)
@@ -34,7 +33,7 @@ def student_apply_leave_view(request,pk):
     context = {
         "leave_data": leave_data
     }
-    return render(request,'student/student_apply_leave.html',context)
+    return render(request,'Student/student_apply_leave.html',context)
 
 
 
@@ -44,4 +43,4 @@ def student_send_feedback_view(request):
     context = {
         "Hello":"Hello"
     }
-    return render(request,"student/student_send_feedback.html",context)
+    return render(request,"Student/student_send_feedback.html",context)
