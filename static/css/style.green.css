@@ -823,9 +823,6 @@ nav.navbar a.menu-btn:hover {
 *      STATISTICS
 * ==========================================================
 */
-.statistics {
-  /* User Activity ------------- */
-}
 
 .statistics div[class*='col-'] .card {
   padding: 20px;

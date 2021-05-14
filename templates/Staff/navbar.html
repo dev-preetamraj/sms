@@ -18,13 +18,16 @@
             <h5 class="sidenav-heading">Main</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
                 <li><a href="{% url 'staff_dashboard' %}"> <i class="icon-home"></i>Dashboard </a></li>
+                <li><a href="{% url 'take_attendance' %}"> <i class="fa fa-calendar"></i>Take Attendance </a></li>
+                <li><a href="{% url 'staffView_attendance' %}"> <i class="fa fa-calendar"></i>View Attendance </a></li>
+                <li><a href="{% url 'add_result' %}"> <i class="fa fa-calendar-check-o"></i>Add Result</a></li>
+                <li><a href="{% url 'leaveStaff' %}"> <i class="fa fa-calendar-check-o"></i>Apply Leave</a></li>
+                <li><a href="{% url 'feedbackStaff' %}"> <i class="fa fa-calendar-check-o"></i>Feedback</a></li>
                 <!-- <li><a href="{% url 'register_user' %}"> <i class="icon-user"></i>Add User </a></li>
                 <li><a href="{% url 'manage_staff_view' %}"> <i class="fa fa-address-book-o"></i>Manage Staffs </a></li>
                 <li><a href="{% url 'manage_student_view' %}"> <i class="fa fa-graduation-cap"></i>Manage Students </a></li>
                 <li><a href="{% url 'manage_courses_view' %}"> <i class="icon-screen"></i>Manage Courses </a></li>
-                <li><a href="{% url 'manage_subjects_view' %}"> <i class="fa fa-book"></i>Manage Subjects </a></li>
-                <li><a href="{% url 'manage_sessions_view' %}"> <i class="fa fa-calendar-check-o"></i>Manage Sessions </a></li>
-                <li><a href="{% url 'view_attendance' %}"> <i class="fa fa-calendar"></i>View Attendance </a></li>
+                <li><a href="{% url 'manage_subjects_view' %}"> <i class="fa fa-book"></i>Manage Subjects </a></li>                
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Feedback and Leave </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         <li><a href="{% url 'staff_feedback_view' %}"> <i class="icon-grid"></i>Staff Feedback </a></li>

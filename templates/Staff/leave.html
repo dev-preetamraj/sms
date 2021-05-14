@@ -1,0 +1,103 @@
+{% extends 'Staff/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
+        <li class="breadcrumb-item active">Apply Leave</li>
+      </ul>
+    </div>
+</div>
+
+<section>
+    <div class="container-fluid">
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <!--Card Header-->
+                    <div class="card-header back_color">
+                        <h4 class="card-title">Apply For Leave</h4> 
+                    </div>
+
+                    <!--Card Body-->
+                    <div class="card-body">     
+                        <div class="form-group">
+                            <label>Leave Date </label>
+                            <input type="date" name="leave_date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Leave Reason </label>
+                            <textarea name="leave_message" class="form-control" rows="6" placeholder="Leave Messge"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary">Apply For Leave</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <!--Card Header-->
+                    <div class="card-header " style="background-color: #33b35a;color:white">
+                        <h4 class="card-title">Leave History</h4> 
+                    </div>
+
+                    <!--Card Body-->
+                    <div class="card-body">     
+                        <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Id</th>
+                                  <th>Leave Date</th>
+                                  <th>Leave Message</th>
+                                  <th>Status</th>
+                                  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>1</td>
+                                  <td>Otto</td>
+                                  <td>
+                                    <span  class="alert alert-danger">Rejected</span>
+                                  </td>
+                                  
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>Jacob</td>
+                                  <td>Thornton</td>
+                                  <td>
+                                    <span  class="alert alert-warning">Pending !</span>
+                                  </td>
+                                  
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <td>Larry</td>
+                                  <td>the Bird</td>
+                                  <td>
+                                    <span  class="alert alert-success">Approved</span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

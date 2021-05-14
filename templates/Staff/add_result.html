@@ -1,0 +1,113 @@
+{% extends 'Staff/base.html' %}
+{% load static %}
+{% block add_css %}
+<style>
+
+    .form-group > label{
+        font-weight: 500;
+    }
+    .cross{
+        color: red;
+        font-size: 20px;
+        margin: -24px 1px;
+    }
+    .fa-circle{
+        color:#19be19;
+        font-size:13px;
+        margin:0px 9px;
+    }
+</style>
+{% endblock add_css%}
+
+{% block content %}
+
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
+        <li class="breadcrumb-item active">Add Result</li>
+      </ul>
+    </div>
+</div>
+<section>
+    <div class="container-fluid">
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <!--Card Head-->
+                    <div class="card-header back_color">
+                        <h4 class="card-title">Add Result</h4>    
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-12">                       
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    Failed to Add Result!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                Result Updated Successfully!
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">     
+                        <div class="form-group">
+                            <label>Subject </label>
+                            <select class="form-control" name="subject" id="subject">
+                                    <option value="1">CS201</option>
+                                    <option value="2">EE204</option>
+                                    <option value="3">DS201</option>
+                                    <option value="4">CS202</option>
+                                    <option value="5">CS304 - FLAT</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Session Year </label>
+                            <select class="form-control" name="session_year_id" id="session_year_id">    
+                                    <option value="1">March 1, 2018 to June 30, 2020</option>
+                                    <option value="2">March 1, 2020 to July 30, 2022</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary" id="fetch_attendance">Fetch Attendance Date</button>
+                    </div>
+                    <div class="card-footer" id="student_data">
+                        <div class="form-group">
+                            <label>Student List</label> 
+                            <select class="student_list form-control" name="student_list">
+                                <option value="5">ID: 1 : Otto</option>
+                                <option value="6">ID: 2 : PK</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label>Assignment Marks : </label>
+                                    <input type="text" name="assignment_marks" class="form-control" placeholder="Assignment Marks">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Exam Marks : </label>
+                                    <input type="text" name="exam_marks" class="form-control" placeholder="Exam Marks">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button id="save_attendance" class="btn btn-success" type="submit">Save Result</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</section>
+
+{% endblock %}

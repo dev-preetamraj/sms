@@ -1,0 +1,159 @@
+{% extends 'Staff/base.html' %}
+{% load static %}
+{% block add_css %}
+<style>
+
+    .form-group > label{
+        font-weight: 500;
+    }
+    .cross{
+        color: red;
+        font-size: 20px;
+        margin: -24px 1px;
+    }
+    .fa-circle{
+        color:#19be19;
+        font-size:13px;
+        margin:0px 9px;
+    }
+</style>
+{% endblock add_css%}
+
+{% block content %}
+
+<div class="breadcrumb-holder">
+    <div class="container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'staff_dashboard' %}">Dashboard</a></li>
+        <li class="breadcrumb-item active">Take Attendance</li>
+      </ul>
+    </div>
+</div>
+<section>
+    <div class="container-fluid">
+        <br>
+        
+        <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                
+                <!--Card Head-->
+                <div class="card-header back_color">
+                    <h4 class="card-title">Take Attendance</h4>
+                    
+                </div>
+                <div class="card-body">
+                           
+                    <div class="form-group">
+                        <label>Subject </label>
+                        <select class="form-control" name="subject" id="subject">
+                            
+                                <option value="1">CS201</option>
+                                <option value="2">EE204</option>
+                                <option value="3">DS201</option>
+                                <option value="4">CS202</option>
+                                <option value="5">CS304 - FLAT</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Session Year </label>
+                        <select class="form-control" name="session_year_id" id="session_year_id">
+                            
+                                <option value="1">March 1, 2018 to June 30, 2020</option>
+                                <option value="2">March 1, 2020 to July 30, 2022</option>
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-primary" id="fetch_attendance">Fetch Attendance Date</button>
+                </div>
+                <div class="card-footer" id="student_data">
+                    <div class="form-group">
+                        <label>Attendance Date: </label> 
+                        <input type="date" name="attendance_date" id="attendance_date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <input type="checkbox" checked="checked" name="student_data[]" value="11">  
+                                    <label class="form-check-label">Prashant Kumar </label>
+                                </div>
+                            </div> 
+                            <div class="col-lg-2">
+                                <div class="form-check"><input type="checkbox" checked="checked" name="student_data[]" value="17"> 
+                                    <label class="form-check-label">Ravi Kumar </label>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button id="save_attendance" class="btn btn-success" type="button">Save Attendance Data</button>
+                    </div>
+                </div>
+              </div>
+                    <div class="form-group">
+                        <label>Student Attendance: </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Prashant </label> 
+                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Prashant </label> 
+                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Prashant </label> 
+                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Prashant </label> 
+                                    <i class="fa fa-circle" aria-hidden="true"></i>
+                                </div>
+                            </div> 
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Ravi Kumar </label>
+                                    <span class="cross" aria-hidden="true">&times;</span>
+                                </div>
+                            </div> 
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Ravi Kumar </label>
+                                    <span class="cross" aria-hidden="true">&times;</span>
+                                </div>
+                            </div> 
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Ravi Kumar </label>
+                                    <span class="cross" aria-hidden="true">&times;</span>
+                                </div>
+                            </div> 
+                            <div class="col-lg-2">
+                                <div class="form-check">
+                                    <label class="form-check-label">Ravi Kumar </label>
+                                    <span class="cross" aria-hidden="true">&times;</span>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div> 
+</section>
+
+{% endblock %}
