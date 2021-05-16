@@ -6,41 +6,41 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import DetailView
 
 
-def student_home_view(request):
+def dashboard_view(request):
 
     context={
        "Hello":"Home"
     }
-    return render(request, "Student/student_home.html", context)    
+    return render(request, "Student/dashboard.html", context)    
 
-def student_view_attendence_view(request):
-
-    context = {
-        "Hello":"Hello"
-    }
-    return render(request,"Student/student_view_attendence.html",context)
-
-def student_result_view(request):
+def attendence_view(request):
 
     context = {
         "Hello":"Hello"
     }
-    return render(request,"Student/student_result.html",context)
+    return render(request,"Student/attendence.html",context)
 
-def student_apply_leave_view(request,pk):
-    student_obj = Student.objects.get(id = pk)
-    leave_data = Student_Leave.object.filter(student_id=student_obj)
-    context = {
-        "leave_data": leave_data
-    }
-    return render(request,'Student/student_apply_leave.html',context)
-
-
-
-
-def student_send_feedback_view(request):
+def result_view(request):
 
     context = {
         "Hello":"Hello"
     }
-    return render(request,"Student/student_send_feedback.html",context)
+    return render(request,"Student/result.html",context)
+
+def leave_view(request):
+    #student_obj = Student.objects.get(id = pk)
+    #leave_data = Student_Leave.object.filter(student_id=student_obj)
+    context = {
+        "leave_data": "leave_data"
+    }
+    return render(request,'Student/leave.html',context)
+
+
+
+
+def feedback_view(request):
+
+    context = {
+        "Hello":"Hello"
+    }
+    return render(request,"Student/feedback.html",context)
