@@ -1,4 +1,4 @@
-{% extends 'Staff/base.html' %}
+{% extends 'Student/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -6,7 +6,7 @@
 <div class="breadcrumb-holder">
     <div class="container-fluid">
       <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'student_dashboard' %}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
         <li class="breadcrumb-item active">Feedback</li>
       </ul>
     </div>
