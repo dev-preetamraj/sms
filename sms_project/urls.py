@@ -8,7 +8,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sms_app.HODurls')),
     path('Staff/', include('sms_app.StaffUrls')),
-    path('Student/', include('sms_app.StudentUrls'))
+    path('Student/', include('sms_app.StudentUrls')),
+    path('accounts/',include('accounts.urls'))
 ]
 
 if settings.DEBUG:
