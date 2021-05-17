@@ -4,6 +4,9 @@ from .models import Staff, Student, Course, Subject, Student_Leave
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.detail import DetailView
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import allowed_users
+
 
 
 def dashboard_view(request):
@@ -13,6 +16,7 @@ def dashboard_view(request):
     }
     return render(request, "Student/dashboard.html", context)    
 
+
 def attendence_view(request):
 
     context = {
@@ -20,12 +24,15 @@ def attendence_view(request):
     }
     return render(request,"Student/attendence.html",context)
 
+
 def result_view(request):
 
     context = {
         "Hello":"Hello"
     }
     return render(request,"Student/result.html",context)
+
+
 
 def leave_view(request):
     #student_obj = Student.objects.get(id = pk)
