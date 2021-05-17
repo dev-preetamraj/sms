@@ -4,9 +4,13 @@ from .models import Staff, Student, Course, Subject
 from django.contrib.auth.models import User, Group
 from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm, AddSubjectForm, AddSessionForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
+from accounts.decorators import allowed_users
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def admin_dashboard(request):
     students = Student.objects.all()
     student_count = students.count()
@@ -19,6 +23,8 @@ def admin_dashboard(request):
     return render(request, 'HOD/dashboard.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def hod_dashboard(req):
     students = Student.objects.all()
     student_count = students.count()
@@ -37,6 +43,8 @@ def hod_dashboard(req):
     return render(req, "HOD/hod_dashboard.html", context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def register_user_view(request):
     form = RegisterUserForm()
     if request.method == 'POST':
@@ -64,6 +72,8 @@ def charts_view(req):
     return render(req, 'HOD/charts.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def manage_student_view(request):
     students = Student.objects.all()
 
@@ -74,6 +84,8 @@ def manage_student_view(request):
     return render(request, 'HOD/manage_student.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def manage_staff_view(request):
     staffs = Staff.objects.all()
 
@@ -83,6 +95,8 @@ def manage_staff_view(request):
     return render(request, 'HOD/manage_staff.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def manage_courses_view(request):
     courses = Course.objects.all()
     context = {
@@ -91,6 +105,8 @@ def manage_courses_view(request):
     return render(request, 'HOD/manage_courses.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def add_course_view(request):
     form = AddCourseForm()
     if request.method == 'POST':
@@ -105,10 +121,15 @@ def add_course_view(request):
     return render(request, 'HOD/add_course.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def manage_subjects_view(request):
     context = {}
     return render(request, 'HOD/manage_subjects.html', context)
 
+
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def add_subjects_view(request):
     form = AddSubjectForm()
     if request.method == 'POST':
@@ -121,6 +142,8 @@ def add_subjects_view(request):
     }
     return render(request, 'HOD/add_subjects.html', context)
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def add_session_view(request):
     form = AddSessionForm()
     if request.method == 'POST':
@@ -136,37 +159,50 @@ def add_session_view(request):
 
 
 
-
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def manage_sessions_view(request):
     context = {}
     return render(request, 'HOD/manage_sessions.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def view_attendance(request):
     context = {}
     return render(request, 'HOD/view_attendance.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def staff_feedback_view(request):
     context = {}
     return render(request, 'HOD/staff_feedback.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def students_feedback_view(request):
     context = {}
     return render(request, 'HOD/students_feedback.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def staff_leave_view(request):
     context = {}
     return render(request, 'HOD/staff_leave.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def student_leave_view(request):
     context = {}
     return render(request, 'HOD/students_leave.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def login_view(req):
     context = {}
     return render(req, 'HOD/login.html', context)
@@ -182,6 +218,8 @@ def tables_view(request):
     return render(request, 'HOD/tables.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def add_student_view(request):
     form = AddStudentForm()
     form.fields['user'].queryset = User.objects.filter(groups__name='student')
@@ -196,6 +234,8 @@ def add_student_view(request):
     return render(request, 'HOD/add_student.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def update_student_view(request, pk):
     students = Student.objects.get(id=pk)
     student_form = AddStudentForm(instance=students)
@@ -215,6 +255,8 @@ def update_student_view(request, pk):
     return render(request, 'HOD/update_student.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def delete_student_view(request, pk):
     students = Student.objects.get(id=pk)
     if request.method == "POST":
@@ -224,6 +266,8 @@ def delete_student_view(request, pk):
     return render(request, 'HOD/delete_student.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def see_detail_view(request, pk):
     stu = Student.objects.get(id=pk)
 
@@ -231,6 +275,8 @@ def see_detail_view(request, pk):
     return render(request, 'HOD/see_detail.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def add_staff_view(request):
     form = AddStaffForm()
     if request.method == 'POST':
@@ -244,6 +290,8 @@ def add_staff_view(request):
     return render(request, 'HOD/add_staff.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def update_staff_view(request, pk):
     staffs = Staff.objects.get(id=pk)
     staff_form = AddStaffForm(instance=staffs)
@@ -262,6 +310,8 @@ def update_staff_view(request, pk):
     return render(request, 'HOD/update_staff.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def delete_staff_view(request, pk):
     staffs = Staff.objects.get(id=pk)
     if request.method == "POST":
@@ -271,12 +321,16 @@ def delete_staff_view(request, pk):
     return render(request, 'HOD/delete_staff.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def see_detail_staff_view(request, pk):
     sta = Staff.objects.get(id=pk)
     context = {'staff': sta}
     return render(request, 'HOD/see_detail_staff.html', context)
 
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
 def result_view(request):
     context = {}
     return render(request, 'HOD/result.html', context)
