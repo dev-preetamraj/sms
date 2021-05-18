@@ -6,7 +6,7 @@
 <div class="breadcrumb-holder">
     <div class="container-fluid">
       <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'student_dashboard' %}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
         <li class="breadcrumb-item active">Feedback</li>
       </ul>
     </div>
@@ -24,6 +24,8 @@
                     </div>
 
                     <!--Card Body-->
+                    <form action="{% url 'save_staff_feedback' %}" method="POST">
+                      {% csrf_token %}
                     <div class="card-body">     
                         
                         <div class="form-group">
@@ -33,8 +35,9 @@
                     </div>
                     
                     <div class="card-footer">
-                        <button type="button" class="btn btn-primary">Leave Feedback</button>
+                        <button type="submit" class="btn btn-primary">Leave Feedback</button>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>
@@ -54,27 +57,18 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Leave Date</th>
-                                  <th>Leave Message</th>                                  
+                                  <th>Date</th>
+                                  <th>Feedback</th>                                  
                                 </tr>
                               </thead>
                               <tbody>
+                                {% for feedback in feedbacks %}
                                 <tr>
-                                  <th scope="row">1</th>
-                                  <td>1</td>
-                                  <td>Otto</td>
+                                  <th scope="row">{{feedback.id}}</th>
+                                  <td>{{feedback.date_created}}</td>
+                                  <td>{{feedback.feedback}}</td>
                                 </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td>Jacob</td>
-                                  <td>Thornton</td>
-                                  <td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">3</th>
-                                  <td>Larry</td>
-                                  <td>the Bird</td>
-                                </tr>
+                                {% endfor %}
                               </tbody>
                             </table>
                           </div>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
-from .models import Attendance, SessionYear, Staff, Student, Course, StudentAttendance, Student_Leave, Subject
+from .models import Attendance, SessionYear, Staff, Staff_Leave, Staffs_FeedBack, Student, Course, StudentAttendance, Student_Leave, Students_FeedBack, Subject
 from django.contrib.auth.models import User, Group
 from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm, AddSubjectForm, AddSessionForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -211,22 +211,47 @@ def view_attendance(request):
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def staff_feedback_view(request):
-    context = {}
+    staff_feedbacks = Staffs_FeedBack.objects.all()
+    context = {
+        'staff_feedbacks': staff_feedbacks
+    }
     return render(request, 'HOD/staff_feedback.html', context)
 
 
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def students_feedback_view(request):
-    context = {}
+    student_feedbacks = Students_FeedBack.objects.all()
+    context = {
+        'student_feedbacks': student_feedbacks
+    }
     return render(request, 'HOD/students_feedback.html', context)
 
 
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def staff_leave_view(request):
-    context = {}
+    leaves = Staff_Leave.objects.all()
+    context = {
+        'leaves': leaves
+    }
     return render(request, 'HOD/staff_leave.html', context)
+
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def staff_leave_approve(request, leave_id):
+    leave = Staff_Leave.objects.get(id=leave_id)
+    leave.status = 1
+    leave.save()
+    return redirect('staff_leave_view')
+
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def staff_leave_reject(request, leave_id):
+    leave = Staff_Leave.objects.get(id=leave_id)
+    leave.status = 2
+    leave.save()
+    return redirect('staff_leave_view')
 
 
 @login_required

@@ -26,6 +26,8 @@ urlpatterns = [
     path('students_feedback/', HODviews.students_feedback_view,
          name='students_feedback_view'),
     path('staff_leave/', HODviews.staff_leave_view, name='staff_leave_view'),
+    path('staff_leave_approve/<str:leave_id>/',HODviews.staff_leave_approve,name='staff_leave_approve'),
+    path('staff_leave_reject/<str:leave_id>/',HODviews.staff_leave_reject,name='staff_leave_reject'),
     path('student_leave/', HODviews.student_leave_view, name='student_leave_view'),
     path('student_leave_approve/<str:leave_id>/',HODviews.student_leave_approve,name='student_leave_approve'),
     path('student_leave_reject/<str:leave_id>/',HODviews.student_leave_reject,name='student_leave_reject'),
