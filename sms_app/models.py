@@ -102,7 +102,7 @@ class Attendance(models.Model):
     date_updated = models.DateTimeField( auto_now=True )
 
     def __str__(self):
-        return str(self.attendence_date)
+        return str(self.attendance_date)
 
 # students Attendence Table(id, attendence id <- Foregin key referencing to attendence table, attendence type i.e Present or Absent 
 #                   student id <- Foreign key referencing to student table, date created, date updated)
@@ -110,12 +110,17 @@ class StudentAttendance(models.Model):
     id = models.AutoField(primary_key=True)
     attendance_id = models.ForeignKey(Attendance, on_delete=models.CASCADE)
     student_id = models.ForeignKey(Student, on_delete=models.CASCADE) 
-    attendence_type = models.BooleanField(default=False)
+    attendance_type = models.BooleanField(default=False)
     date_created = models.DateTimeField( auto_now_add=True )
     date_updated = models.DateTimeField( auto_now=True )
 
     def __str__(self):
-        return str(self.attendence_type)
+        type = ""
+        if self.attendance_type==True:
+            type = "Present"
+        else:
+            type = "Abscent"
+        return "{} - {}".format(self.student_id.user.username,type)
 
 # staff_feedback table(id, staff id <- foreign key referencing to staff table, feedback, reply, date_created, date updated)
 class Staffs_FeedBack(models.Model):

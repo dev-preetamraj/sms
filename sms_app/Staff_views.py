@@ -7,32 +7,38 @@ from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 
 
-
+@login_required
+@allowed_users(allowed_roles=['staff'])
 def staff_dashboard(req):
     context = {}
     return render(req, 'Staff/dashboard.html', context)
 
-
+@login_required
+@allowed_users(allowed_roles=['staff'])
 def take_attendance(req):
     context = {}
     return render(req, 'Staff/take_attendance.html', context)
 
-
+@login_required
+@allowed_users(allowed_roles=['staff'])
 def view_attendance(req):
     context = {}
     return render(req, 'Staff/view_attendance.html', context)
 
-
+@login_required
+@allowed_users(allowed_roles=['staff'])
 def add_result(req):
     context = {}
     return render(req, 'Staff/add_result.html', context)
 
-
+@login_required
+@allowed_users(allowed_roles=['staff'])
 def leave(req):
     context = {}
     return render(req, 'Staff/leave.html', context)
 
-
+@login_required
+@allowed_users(allowed_roles=['staff'])
 def feedback(req):
     context = {}
     return render(req, 'Staff/feedback.html', context)

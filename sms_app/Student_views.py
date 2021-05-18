@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
 
 
-
+@login_required
+@allowed_users(allowed_roles=['student'])
 def dashboard_view(request):
 
     context={
@@ -16,7 +17,8 @@ def dashboard_view(request):
     }
     return render(request, "Student/dashboard.html", context)    
 
-
+@login_required
+@allowed_users(allowed_roles=['student'])
 def attendence_view(request):
 
     context = {
@@ -24,7 +26,8 @@ def attendence_view(request):
     }
     return render(request,"Student/attendence.html",context)
 
-
+@login_required
+@allowed_users(allowed_roles=['student'])
 def result_view(request):
 
     context = {
@@ -33,7 +36,8 @@ def result_view(request):
     return render(request,"Student/result.html",context)
 
 
-
+@login_required
+@allowed_users(allowed_roles=['student'])
 def leave_view(request):
     #student_obj = Student.objects.get(id = pk)
     #leave_data = Student_Leave.object.filter(student_id=student_obj)
@@ -44,7 +48,8 @@ def leave_view(request):
 
 
 
-
+@login_required
+@allowed_users(allowed_roles=['student'])
 def feedback_view(request):
 
     context = {
