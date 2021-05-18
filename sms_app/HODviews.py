@@ -189,8 +189,10 @@ def view_attendance(request):
 
         
         attendance_id = 0
+        default_text = ""
         if request.POST.get('attendance_date')==None:
             attendance_id = 1
+            default_text = "Sample Attendance Structure"
         else:
             attendance_id = request.POST.get('attendance_date')
 
@@ -201,6 +203,7 @@ def view_attendance(request):
             student_attendance_count = True
         context['student_attendance'] = student_attendance
         context['student_attendance_count'] = student_attendance_count
+        context['default_text'] = default_text
     
     return render(request, 'HOD/view_attendance.html', context)
 
