@@ -24,20 +24,23 @@
                     </div>
 
                     <!--Card Body-->
-                    <div class="card-body">     
-                        <div class="form-group">
-                            <label>Leave Date </label>
-                            <input type="date" name="leave_date" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Leave Reason </label>
-                            <textarea name="leave_message" class="form-control" rows="6" placeholder="Leave Messge"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">Apply For Leave</button>
-                    </div>
+                    <form action="" method="POST">
+                      {% csrf_token %}
+                      <div class="card-body">     
+                          <div class="form-group">
+                              <label>Leave Date </label>
+                              <input type="date" name="leave_date" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label>Leave Reason </label>
+                              <textarea name="leave_message" class="form-control" rows="6" placeholder="Leave Messge"></textarea>
+                          </div>
+                      </div>
+                      
+                      <div class="card-footer">
+                          <button type="submit" class="btn btn-primary">Apply For Leave</button>
+                      </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -64,32 +67,25 @@
                                 </tr>
                               </thead>
                               <tbody>
+                                {% for leave in leaves %}
                                 <tr>
-                                  <th scope="row">1</th>
-                                  <td>1</td>
-                                  <td>Otto</td>
+                                  <th scope="row">{{leave.id}}</th>
+                                  <td>{{leave.leave_date}}</td>
+                                  <td>{{leave.message}}</td>
                                   <td>
-                                    <span  class="alert alert-danger">Rejected</span>
-                                  </td>
-                                  
-                                </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                  <td>Jacob</td>
-                                  <td>Thornton</td>
-                                  <td>
+                                    {% if leave.status == 0 %}
                                     <span  class="alert alert-warning">Pending !</span>
+                                    {% elif leave.status == 1 %}
+                                    <span  class="alert alert-success">Approved</span>
+                                    {% else %}
+                                    <span  class="alert alert-danger">Rejected</span>
+                                    {% endif %}
+
                                   </td>
                                   
                                 </tr>
-                                <tr>
-                                  <th scope="row">3</th>
-                                  <td>Larry</td>
-                                  <td>the Bird</td>
-                                  <td>
-                                    <span  class="alert alert-success">Approved</span>
-                                  </td>
-                                </tr>
+                                {% endfor %}
+                                
                               </tbody>
                             </table>
                           </div>

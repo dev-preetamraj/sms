@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
-from .models import Attendance, SessionYear, Staff, Student, Course, StudentAttendance, Subject
+from .models import Attendance, SessionYear, Staff, Student, Course, StudentAttendance, Student_Leave, Subject
 from django.contrib.auth.models import User, Group
 from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm, AddSubjectForm, AddSessionForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -232,9 +232,27 @@ def staff_leave_view(request):
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def student_leave_view(request):
-    context = {}
+    leaves = Student_Leave.objects.all()
+    context = {
+        'leaves': leaves
+    }
     return render(request, 'HOD/students_leave.html', context)
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def student_leave_approve(request, leave_id):
+    leave = Student_Leave.objects.get(id=leave_id)
+    leave.status = 1
+    leave.save()
+    return redirect('student_leave_view')
+
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def student_leave_reject(request, leave_id):
+    leave = Student_Leave.objects.get(id=leave_id)
+    leave.status = 2
+    leave.save()
+    return redirect('student_leave_view')
 
 
 def login_view(req):

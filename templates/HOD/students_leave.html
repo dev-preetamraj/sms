@@ -38,44 +38,29 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {% for leave in leaves %}
                         <tr>
-                          <th scope="row">1</th>
-                          <td>1</td>
-                          <td>Otto</td>
-                          <td>March 27, 2021</td>
-                          <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-                          <td>March 27, 2021, 12:00 a.m.</td>
+                          <th scope="row">{{leave.id}}</th>
+                          <td>{{leave.student_id.id}}</td>
+                          <td>{{leave.student_id.user.first_name}} {{leave.student_id.user.last_name}}</td>
+                          <td>{{leave.leave_date}}</td>
+                          <td>{{leave.message}}</td>
+                          <td>{{leave.date_created}}</td>
                           <td>
-                                        
-                            <a href="/staff_leave_approve/4/" class="btn btn-success">Approve</a>
-                            <a href="/staff_leave_reject/4/" class="btn btn-danger">Reject</a>
+                            {% if leave.status == 0 %}         
+                            <a href="{% url 'student_leave_approve' leave_id=leave.id %}" class="btn btn-success">Approve</a>
+                            <a href="{% url 'student_leave_reject' leave_id=leave.id %}" class="btn btn-danger">Reject</a>
+                            {% elif leave.status == 1 %}
+                            <button class="btn btn-warning" disabled="disabled">Approved</button>
+                            {% else %}
+                              <button class="btn btn-danger" disabled="disabled">Rejected</button>
+                            {% endif %}
                         
                         
-                    </td>
+                          </td>
                         </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1</td>
-                            <td>Otto</td>
-                            <td>March 27, 2021</td>
-                            <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-                            <td>March 27, 2021, 12:00 a.m.</td>
-                            <td>
-  
-                                <button class="btn btn-danger" style="cursor: not-allowed;"  disabled>Rejected</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1</td>
-                            <td>Otto</td>
-                            <td>March 27, 2021</td>
-                            <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</td>
-                            <td>March 27, 2021, 12:00 a.m.</td>
-                            <td>
-                                <button class="btn btn-warning" style="cursor: not-allowed;"  disabled>Approved</button>
-                            </td>
-                        </tr>
+                        {% endfor %}
+                        
                       </tbody>
                     </table>
                   </div>

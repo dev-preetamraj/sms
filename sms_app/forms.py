@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 # from .views import Staff, Student
-from .models import Course, Staff, Student, Subject, SessionYear
+from .models import Course, Staff, Student, Subject, SessionYear, Students_FeedBack
 
 
 class RegisterUserForm(UserCreationForm):
@@ -72,4 +72,9 @@ class StudentLeaveForm(ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
+
+class StudentFeedbackForm(ModelForm):
+    class Meta:
+        model = Students_FeedBack
+        fields = ['student_id', 'feedback']
 
