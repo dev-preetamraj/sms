@@ -217,6 +217,18 @@ def staff_feedback_view(request):
     }
     return render(request, 'HOD/staff_feedback.html', context)
 
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def reply_staff_feedback(request):
+    reply_id = request.POST.get('reply_id')
+    reply_message = request.POST.get('reply_feedback')
+    print(reply_id)
+    print(reply_message)
+    feedback_reply = Staffs_FeedBack.objects.get(id=reply_id)
+    feedback_reply.reply = reply_message
+    feedback_reply.save()
+    return redirect('staff_feedback_view')
+
 
 @login_required
 @allowed_users(allowed_roles=['hod'])

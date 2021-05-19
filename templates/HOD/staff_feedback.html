@@ -44,38 +44,22 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {% for feedback in staff_feedbacks %}
                         <tr>
-                          <th scope="row">1</th>
-                          <td>1</td>
-                          <td>Otto</td>
-                          <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </td>
-                          <td>March 27, 2021, 12:00 a.m.</td>
+                          <th scope="row">{{feedback.id}}</th>
+                          <td>{{feedback.staff_id.id}}</td>
+                          <td>{{feedback.staff_id.user.first_name}} {{feedback.staff_id.user.last_name}}</td>
+                          <td>{{feedback.feedback}}</td>
+                          <td>{{feedback.date_created}}</td>
                           <td>
-
+                            {% if feedback.reply == "" %}
                             <button type="button" class="btn btn-primary replyModalOn" id="staff_data" data-toggle="modal" data-target="#modalForReply">Reply</button>
+                            {% else %}
+                            {{feedback.reply}}
+                            {% endif %}
                           </td>
                         </tr>
-                        
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                          <td>March 27, 2021, 12:00 a.m.</td>
-                          <td>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elhshh
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                          <td>March 27, 2021, 12:00 a.m.</td>
-                          <td>
-                            <button type="button" class="btn btn-primary replyModalOn" id="staff_data" data-toggle="modal" data-target="#modalForReply">Reply</button>
-                          </td>
-                        </tr>
+                        {% endfor %}
                       </tbody>
                     </table>
                   </div>
@@ -96,13 +80,14 @@
         </div>
         <div class="modal-body">
             <p>Reply to: <b><span id="reply_name"></span></b></p>
-            <input type="hidden" id="reply_id" name="reply_id" value="4">
-            <textarea class="form-control" rows="5" id="reply_message"></textarea>
+            <input type="hidden" id="reply_id" name="reply_id">
+            <textarea class="form-control" rows="5" name="reply_feedback" id="reply_message"></textarea>
         </div>
         <div class="modal-footer">
             
-            <button type="button" class="btn btn-primary btn-block" id="reply_button">Reply</button>
+            <button type="submit" class="btn btn-primary btn-block" id="reply_button">Reply</button>
         </div>
+      
         </div>
     </div>
     </div>
@@ -116,10 +101,11 @@
   const modalReplyButton = document.getElementById('reply_button')
 
   function changeModelContent (event){
-    const staffId = event.target.parentElement.parentElement.childNodes[3].textContent;
+    const feedbackId = event.target.parentElement.parentElement.childNodes[3-2].textContent;
     const staffName =  event.target.parentElement.parentElement.childNodes[5].textContent;
-    console.log(staffId,staffName)
-    document.getElementById('reply_id').textContent = staffId;
+    console.log(feedbackId,staffName)
+    document.getElementById('reply_id').textContent = feedbackId;
+    document.getElementById('reply_id').setAttribute("value",feedbackId);
     document.getElementById('reply_name').textContent = staffName;
     
   }

@@ -23,6 +23,7 @@ urlpatterns = [
          name='manage_sessions_view'),
     path('view_attendance/', HODviews.view_attendance, name='view_attendance'),
     path('staff_feedback/', HODviews.staff_feedback_view, name='staff_feedback_view'),
+    path('reply_staff_feedback/',HODviews.reply_staff_feedback,name='reply_staff_feedback'),
     path('students_feedback/', HODviews.students_feedback_view,
          name='students_feedback_view'),
     path('staff_leave/', HODviews.staff_leave_view, name='staff_leave_view'),
