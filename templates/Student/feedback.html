@@ -57,8 +57,9 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Leave Date</th>
-                                  <th>Leave Message</th>                                  
+                                  <th>Date</th>
+                                  <th>Feedback</th>
+                                  <th>Reply</th>                                
                                 </tr>
                               </thead>
                               <tbody>
@@ -67,6 +68,11 @@
                                   <th scope="row">{{feedback.id}}</th>
                                   <td>{{feedback.date_created}}</td>
                                   <td>{{feedback.feedback}}</td>
+                                  {% if feedback.reply == "" %}
+                                  <td style="color: red;">Not replied yet.</td>
+                                  {% else %}
+                                  <td>{{feedback.reply}}</td>
+                                  {% endif %}
                                 </tr>
                                 {% endfor %}
                               </tbody>

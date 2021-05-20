@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
 from accounts.decorators import allowed_users, hod_only
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required
@@ -218,6 +219,7 @@ def staff_feedback_view(request):
     }
     return render(request, 'HOD/staff_feedback.html', context)
 
+@csrf_exempt
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def staff_feedback_message_reply(request):
@@ -243,6 +245,22 @@ def students_feedback_view(request):
     }
     return render(request, 'HOD/students_feedback.html', context)
 
+
+@csrf_exempt
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def student_feedback_message_reply(request):
+    feedback_id = request.POST.get('id')
+    feedback_reply = request.POST.get('reply')
+
+    try:
+        feedback = Students_FeedBack.objects.get(id=feedback_id)
+        feedback.reply = feedback_reply
+        feedback.save()
+        return HttpResponse("True")
+
+    except:
+        return HttpResponse("False")
 
 @login_required
 @allowed_users(allowed_roles=['hod'])

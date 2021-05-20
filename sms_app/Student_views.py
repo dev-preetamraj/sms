@@ -68,8 +68,8 @@ def feedback_view(request):
         feedback = request.POST.get('message')
         save_feedback = Students_FeedBack(student_id=student_obj, feedback=feedback, reply="")
         save_feedback.save()
-    
-    feedbacks = Students_FeedBack.objects.all()
+    student_obj = Student.objects.get(user=user.id)
+    feedbacks = Students_FeedBack.objects.filter(student_id=student_obj)
     context = {
         'feedbacks': feedbacks
     }
