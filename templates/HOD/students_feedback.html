@@ -45,40 +45,24 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {% for feedback in student_feedbacks %}
                         <tr>
-                          <th scope="row">1</th>
-                          <td>1</td>
-                          <td>Otto</td>
-                          <td>March 1, 2018 to June 30, 2020</td>
-                          <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio a eaque incidunt laboriosam beatae facere, atque laborum odit quo minima voluptatum eveniet ex. Dolorum labore natus sint molestias. Adipisci, quam.</td>
-                          <td>March 27, 2021, 12:00 a.m.</td>
+                          <th scope="row">{{feedback.id}}</th>
+                          <td>{{feedback.student_id.id}}</td>
+                          <td>{{feedback.student_id.user.first_name}} {{feedback.student_id.user.last_name}}</td>
+                          <td>{{feedback.student_id.session_under}}</td>
+                          <td>{{feedback.feedback}}</td>
+                          <td>{{feedback.date_created}}</td>
                           <td>
-
-                            <button type="button" class="btn btn-primary replyModalOn" id="student_data" data-toggle="modal" data-target="#modalForReply">Reply</button>
+                            {% if feedback.reply == "" %}
+                            <button class="btn btn-success reply_open_modal" data-toggle="modal" data-target="#replyModal">Reply</button>
+                            {% else %}
+                            {{feedback.reply}}
+                            {% endif %}
                           </td>
                         </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>March 1, 2018 to June 30, 2020</td>
-                          <td>@fat</td>
-                          <td>March 27, 2021, 12:00 a.m.</td>
-                          <td>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, voluptatem. Fugiat, quasi. Nostrum impedit saepe porro exercitationem beatae nihil reiciendis, tempore aperiam animi, quae sit obcaecati possimus numquam ratione vitae?
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>March 1, 2018 to June 30, 2020</td>
-                          <td>@twitter</td>
-                          <td>March 27, 2021, 12:00 a.m.</td>
-                          <td>
-                            <button type="button" class="btn btn-primary replyModalOn" id="student_data" data-toggle="modal" data-target="#modalForReply">Reply</button>
-                          </td>
-                        </tr>
+                        {% endfor %}
+                        
                       </tbody>
                     </table>
                   </div>
@@ -88,61 +72,86 @@
         </div>
     </div> 
 </section>
-<div class="modal fade " id="modalForReply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Reply Feedback</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <p>Reply to: <b><span id="reply_name"></span></b></p>
-            <input type="hidden" id="reply_id" name="reply_id" value="4">
-            <textarea class="form-control" rows="5" id="reply_message"></textarea>
-        </div>
-        <div class="modal-footer">
-            
-            <button type="button" class="btn btn-primary btn-block" id="reply_button">Reply</button>
-        </div>
-        </div>
-    </div>
-    </div>
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reply Feedback</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          <p>Reply to: <b><span id="reply_name"></span></b></p>
+          <input type="hidden" id="reply_id" name="reply_id" />
+          <textarea class="form-control" rows="5" id="reply_message"></textarea>
+      </div>
+      <div class="modal-footer">
+          {% comment %} <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> {% endcomment %}
+          <button type="button" class="btn btn-primary btn-block" id="reply_button">Reply</button>
+      </div>
+      </div>
+  </div>
+  </div>
 
 {% endblock %}
 
 {% block add_js%}
 <script>
-  const replyButton = document.querySelectorAll('.replyModalOn')
-  const modalReplyButton = document.getElementById('reply_button')
+  $(document).ready(function(){
+      $(".reply_open_modal").click(function(){
+          // Getting Value from Table
+          var id = $(this).parents("tr").children("th:eq(0)").text(); //Getting Selected Row ID (Frist Column)
+          var name = $(this).parents("tr").children("td:eq(1)").text(); //Getting Selected Name (3rd Column)
+          
+          // Adding the Value from Table to Modal form
+          $("#reply_id").val(id);
+          $("#reply_name").text(name);
+      });
 
-  function changeModelContent (event){
-    const staffId = event.target.parentElement.parentElement.childNodes[3].textContent;
-    const staffName =  event.target.parentElement.parentElement.childNodes[5].textContent;
-    console.log(staffId,staffName)
-    document.getElementById('reply_id').textContent = staffId;
-    document.getElementById('reply_name').textContent = staffName;
-    
-  }
-  
-  function changeData (event){
-    const staffId = document.getElementById('reply_id').textContent;
-    const reply = document.getElementById('reply_message').value;
-    event.target.textContent = 'Sending...';
-    event.target.setAttribute('disabled',true);
-    event.target.style.cursor = 'not-allowed';
-    // Now the content of how to sent data in the database will be written here
+      $(document).on("click", "#reply_button", function(){
+          //Disabling the Button while data is being saved in Server
+          $(this).attr("disabled", "disabled")
+          $(this).text("Sending Reply...")
 
-    // then
-    location.reload()
-  }
+          //console.log("SAVE")
+          
 
-  replyButton.forEach(item => {
-    item.addEventListener('click', changeModelContent)
+          var id=$("#reply_id").val();
+          var reply=$("#reply_message").val();
+          //console.log(student_data);
+
+          // Saving Attendance Data into Database
+
+          $.ajax({
+              url:"{% url 'student_feedback_message_reply' %}",
+              type:'POST',
+              data:{id:id, reply:reply},
+          })
+
+          
+          .done(function(response){
+              
+              if(response=="True")
+              {
+                  alert("Reply Sent!")
+              }
+              else
+              {
+                  alert("Failed to Send Reply!")
+              }
+              location.reload()
+              
+              //console.log(response)
+          })
+
+          .fail(function(){
+              alert("Error in Sending Feedback Reply.")
+          })
+
+      })
+
   })
-  modalReplyButton.addEventListener('click', changeData)
-  
 </script>
 
 

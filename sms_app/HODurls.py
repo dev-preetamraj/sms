@@ -24,6 +24,7 @@ urlpatterns = [
     path('view_attendance/', HODviews.view_attendance, name='view_attendance'),
     path('staff_feedback/', HODviews.staff_feedback_view, name='staff_feedback_view'),
     path('staff_feedback_message_reply/',HODviews.staff_feedback_message_reply,name='staff_feedback_message_reply'),
+    path('student_feedback_message_reply/',HODviews.student_feedback_message_reply,name='student_feedback_message_reply'),
     path('students_feedback/', HODviews.students_feedback_view,
          name='students_feedback_view'),
     path('staff_leave/', HODviews.staff_leave_view, name='staff_leave_view'),
