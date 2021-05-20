@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
 from accounts.decorators import allowed_users, hod_only
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 
 @login_required
@@ -219,15 +220,18 @@ def staff_feedback_view(request):
 
 @login_required
 @allowed_users(allowed_roles=['hod'])
-def reply_staff_feedback(request):
-    reply_id = request.POST.get('reply_id')
-    reply_message = request.POST.get('reply_feedback')
-    print(reply_id)
-    print(reply_message)
-    feedback_reply = Staffs_FeedBack.objects.get(id=reply_id)
-    feedback_reply.reply = reply_message
-    feedback_reply.save()
-    return redirect('staff_feedback_view')
+def staff_feedback_message_reply(request):
+    feedback_id = request.POST.get('id')
+    feedback_reply = request.POST.get('reply')
+
+    try:
+        feedback = Staffs_FeedBack.objects.get(id=feedback_id)
+        feedback.reply = feedback_reply
+        feedback.save()
+        return HttpResponse("True")
+
+    except:
+        return HttpResponse("False")
 
 
 @login_required

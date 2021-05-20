@@ -81,7 +81,7 @@
         <div class="modal-body">
             <p>Reply to: <b><span id="reply_name"></span></b></p>
             <input type="hidden" id="reply_id" name="reply_id">
-            <textarea class="form-control" rows="5" name="reply_feedback" id="reply_message"></textarea>
+            <textarea class="form-control" rows="5" id="reply_message"></textarea>
         </div>
         <div class="modal-footer">
             
@@ -96,38 +96,66 @@
 
 
 {% block add_js%}
+
 <script>
-  const replyButton = document.querySelectorAll('.replyModalOn')
-  const modalReplyButton = document.getElementById('reply_button')
+  $(document).ready(function(){
+      $(".replyModalOn").click(function(){
+          // Getting Value from Table
+          var id = $(this).parents("tr").children("th:eq(0)").text(); //Getting Selected Row ID (Frist Column)
+          var name = $(this).parents("tr").children("td:eq(1)").text(); //Getting Selected Name (3rd Column)
+          console.log(id, name)
+          // Adding the Value from Table to Modal form
+          $("#reply_id").val(id);
+          $("#reply_name").text(name);
+      });
 
-  function changeModelContent (event){
-    const feedbackId = event.target.parentElement.parentElement.childNodes[3-2].textContent;
-    const staffName =  event.target.parentElement.parentElement.childNodes[5].textContent;
-    console.log(feedbackId,staffName)
-    document.getElementById('reply_id').textContent = feedbackId;
-    document.getElementById('reply_id').setAttribute("value",feedbackId);
-    document.getElementById('reply_name').textContent = staffName;
-    
-  }
-  
-  function changeData (event){
-    const staffId = document.getElementById('reply_id').textContent;
-    const reply = document.getElementById('reply_message').value;
-    event.target.textContent = 'Sending...';
-    event.target.setAttribute('disabled',true);
-    event.target.style.cursor = 'not-allowed';
-    // Now the content of how to sent data in the database will be written here
+      $(document).on("click", "#reply_button", function(){
+          //Disabling the Button while data is being saved in Server
+          $(this).attr("disabled", "disabled")
+          $(this).text("Sending Reply...")
 
-    // then
-    location.reload()
-  }
+          //console.log("SAVE")
+          
 
-  replyButton.forEach(item => {
-    item.addEventListener('click', changeModelContent)
+          var id=$("#reply_id").val();
+          var reply=$("#reply_message").val();
+          //console.log(student_data);
+
+          // Saving Attendance Data into Database
+
+          $.ajax({
+              url:"{% url 'staff_feedback_message_reply' %}",
+              type:'POST',
+              data:{id:id, reply:reply},
+          })
+
+          
+          .done(function(response){
+              
+              if(response=="True")
+              {
+                  alert("Reply Sent!")
+              }
+              else
+              {
+                  alert("Failed to Send Reply!")
+              }
+              location.reload()
+              
+              //console.log(response)
+          })
+
+          .fail(function(){
+              alert("Error in Sending Feedback Reply.")
+          })
+
+      })
+
   })
-  modalReplyButton.addEventListener('click', changeData)
-  
 </script>
+
+
+
 
 
 {% endblock add_js %}
