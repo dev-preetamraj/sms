@@ -19,6 +19,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class HODTable(models.Model):
     id = models.AutoField(primary_key = True)
     user = models.OneToOneField(User, on_delete = models.CASCADE)
+    GENDER = (('Male', 'Male'),('Female', 'Female'),('Other', 'Other'))
+    gender = models.CharField(max_length = 10, choices = GENDER, null=True)
     address = models.TextField(null = True)
     date_joined = models.DateField(auto_now_add = True)
     date_updated = models.DateField(auto_now = True)
@@ -30,6 +32,8 @@ class HODTable(models.Model):
 class Staff(models.Model):
     id = models.AutoField(primary_key = True)
     user = models.OneToOneField(User, on_delete = models.CASCADE)
+    GENDER = (('Male', 'Male'),('Female', 'Female'),('Other', 'Other'))
+    gender = models.CharField(max_length = 10, choices = GENDER, null=True)
     profile_pic = models.ImageField(default = "", null = True, blank = True)
     address = models.TextField(null = True)
     date_joined = models.DateField(auto_now_add = True)
@@ -55,7 +59,7 @@ class Student(models.Model):
     GENDER = (('Male', 'Male'),('Female', 'Female'),('Other', 'Other'))
     gender = models.CharField(max_length = 10, choices = GENDER)
     address = models.TextField(null = True)
-    profile_pic = models.ImageField(default = "", null = True, blank = True)
+    profile_pic = models.ImageField(default = "profile_demo.png", null = True, blank = True)
     session_under = models.ForeignKey(
         SessionYear, on_delete = models.CASCADE, null = True, blank = True)
     courses_taken = models.ForeignKey(

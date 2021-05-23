@@ -33,8 +33,6 @@ urlpatterns = [
     path('student_leave/', HODviews.student_leave_view, name='student_leave_view'),
     path('student_leave_approve/<str:leave_id>/',HODviews.student_leave_approve,name='student_leave_approve'),
     path('student_leave_reject/<str:leave_id>/',HODviews.student_leave_reject,name='student_leave_reject'),
-    path('add_student/', HODviews.add_student_view, name='add_student'),
-    path('add_staff/', HODviews.add_staff_view, name='add_staff'),
      path('add_subjects/', HODviews.add_subjects_view, name='add_subjects'),
      path('add_session/', HODviews.add_session_view, name='add_session'),
     path('update_student/<str:pk>',
