@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .decorators import allowed_users, unauthenticated_user
-from .models import Attendance, SessionYear, Staff, Staff_Leave, Staffs_FeedBack, Student, Course, StudentAttendance, Student_Leave, Students_FeedBack, Subject
+from .models import Attendance, HODTable, SessionYear, Staff, Staff_Leave, Staffs_FeedBack, Student, Course, StudentAttendance, Student_Leave, Students_FeedBack, Subject
 from django.contrib.auth.models import User, Group
 from .forms import AddStaffForm, RegisterUserForm, AddStudentForm, UpdateUserForm, AddCourseForm, AddSubjectForm, AddSessionForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -63,13 +63,32 @@ def register_user_view(request):
             if form.cleaned_data.get('user_type') == 'hod':
                 set_group = Group.objects.get(name='hod')
                 user_save.groups.add(set_group)
+                gender = form.cleaned_data.get('gender')
+                create_hod = HODTable(
+                    user = user_save,
+                    gender = gender
+                )
+                create_hod.save()
             elif form.cleaned_data.get('user_type') == 'staff':
                 set_group = Group.objects.get(name='staff')
                 user_save.groups.add(set_group)
+                gender = form.cleaned_data.get('gender')
+                create_staff = Staff(
+                    user = user_save,
+                    gender = gender,
+                )
+                create_staff.save()
             else:
                 set_group = Group.objects.get(name='student')
                 user_save.groups.add(set_group)
-            return redirect('admin_dashboard')
+                gender = form.cleaned_data.get('gender')
+                create_student = Student(
+                    user = user_save,
+                    gender = gender,
+                )
+                create_student.save()
+                
+            return redirect('register_user')
         else:
             return redirect('register_user')
     context = {'form': form}
@@ -329,20 +348,7 @@ def tables_view(request):
     return render(request, 'HOD/tables.html', context)
 
 
-@login_required
-@allowed_users(allowed_roles=['hod'])
-def add_student_view(request):
-    form = AddStudentForm()
-    form.fields['user'].queryset = User.objects.filter(groups__name='student')
-    if request.method == 'POST':
-        form = AddStudentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('manage_student_view')
-    context = {
-        'form': form
-    }
-    return render(request, 'HOD/add_student.html', context)
+
 
 
 @login_required
@@ -386,19 +392,6 @@ def see_detail_view(request, pk):
     return render(request, 'HOD/see_detail.html', context)
 
 
-@login_required
-@allowed_users(allowed_roles=['hod'])
-def add_staff_view(request):
-    form = AddStaffForm()
-    if request.method == 'POST':
-        form = AddStaffForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('manage_staff_view')
-    context = {
-        'form': form
-    }
-    return render(request, 'HOD/add_staff.html', context)
 
 
 @login_required

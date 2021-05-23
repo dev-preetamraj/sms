@@ -13,12 +13,14 @@ class RegisterUserForm(UserCreationForm):
         ('staff', 'staff'),
         ('student', 'student')
     )
+    GENDER = (('Male', 'Male'),('Female', 'Female'),('Other', 'Other'))
     user_type = forms.ChoiceField(choices=USERTYPE)
+    gender = forms.ChoiceField(choices=GENDER)
 
     class Meta:
         model = User
         fields = ['username', 'email', 'password1',
-                  'password2', 'first_name', 'last_name', 'user_type']
+                  'password2', 'first_name', 'last_name','gender', 'user_type']
 
         widgets = {
             'username': forms.TextInput(attrs={'class': 'input-material'}),

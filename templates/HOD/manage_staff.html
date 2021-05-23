@@ -59,15 +59,22 @@ th{
   align-items: center;
 }
 </style>
-
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'hod_dashboard' %}">Dashboard</a></li>
+      <li class="breadcrumb-item active">Manage Staff</li>
+    </ul>
+  </div>
+</div>
+<section>
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
         <h3> Manage Staff</h3>
         <br>
-        <a href="{% url 'add_staff' %}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">+ Add
-          Staffs</a>
+        
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -127,6 +134,6 @@ th{
       </div>
     </div>
   </div>
-
+</section>
 
   {% endblock %}
