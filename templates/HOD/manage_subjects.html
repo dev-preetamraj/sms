@@ -67,13 +67,14 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {% for subject in subjects %}
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>Otto</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                          <th scope="row">{{subject.id}}</th>
+                          <td>{{subject.subject_name}}</td>
+                          <td>{{subject.under_course}}</td>
+                          <td>{{subject.taught_by.user.first_name}} {{subject.taught_by.user.last_name}}</td>
+                          <td>{{subject.date_created}}</td>
+                          <td>{{subject.date_updated}}</td>
                           <td>
                             <div class="action">
                                 <a href="#" title="edit"><button type="button" class="btn  btn-primary  fa fa-edit" ></button></a>
@@ -82,36 +83,8 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>Otto</td>
-                          <td>Otto</td>
-                          <td>@fat</td>
-                          <td>
-                            <div class="action">
-                                <a href="#" title="edit"><button type="button" class="btn  btn-primary  fa fa-edit" ></button></a>
-                                
-                                <a href="#" title="delete" ><button type="button" class="btn btn-danger  fa fa-trash"></button></a>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                          <td>@twitter</td>
-                          <td>@twitter</td>
-                          <td>
-                            <div class="action">
-                                <a href="#" title="edit"><button type="button" class="btn  btn-primary  fa fa-edit" ></button></a>
-                                
-                                <a href="#" title="delete" ><button type="button" class="btn btn-danger  fa fa-trash"></button></a>
-                            </div>
-                          </td>
-                        </tr>
+                        {% endfor %}
+                        
                       </tbody>
                     </table>
                   </div>

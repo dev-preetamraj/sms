@@ -151,8 +151,13 @@ def add_course_view(request):
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def manage_subjects_view(request):
-    context = {}
+    subjects = Subject.objects.all()
+    context = {
+        'subjects' : subjects
+    }
     return render(request, 'HOD/manage_subjects.html', context)
+
+
 
 
 @login_required

@@ -21,7 +21,8 @@ def staff_dashboard(req):
 @login_required
 @allowed_users(allowed_roles=['staff'])
 def staff_take_attendance(request):
-    subjects = Subject.objects.filter(taught_by=request.user.id)
+    staff_obj = Staff.objects.get(user=request.user.id)
+    subjects = Subject.objects.filter(taught_by=staff_obj)
     session_years = SessionYear.objects.all()
     context = {
         "subjects": subjects,
