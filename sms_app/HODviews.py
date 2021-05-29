@@ -188,15 +188,67 @@ def add_session_view(request):
     }
     return render(request, 'HOD/add_session.html', context)
 
-
+#  ======================   Session  ========================== #
 
 
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def manage_sessions_view(request):
-    context = {}
+    sessions = SessionYear.objects.all()
+    context = {
+        'sessions' : sessions
+    }
     return render(request, 'HOD/manage_sessions.html', context)
 
+
+
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def delete_session_view(request, pk):
+    session = SessionYear.objects.get(id=pk)
+    if request.method == "POST":
+        session.delete()
+        return redirect('manage_sessions_view')
+    context = {'item': session}
+    return render(request, 'HOD/delete_session.html',context)
+
+
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def update_student_view(request, pk):
+    students = Student.objects.get(id=pk)
+    student_form = AddStudentForm(instance=students)
+    user_form = UpdateUserForm(instance=students.user)
+    if request.method == 'POST':
+        student_form = AddStudentForm(
+            request.POST, request.FILES, instance=students)
+        user_form = UpdateUserForm(request.POST, instance=students.user)
+        if student_form.is_valid() and user_form.is_valid():
+            student_form.save()
+            user_form.save()
+            return redirect('manage_student_view')
+    context = {
+        'student_form': student_form,
+        'user_form': user_form
+    }
+    return render(request, 'HOD/update_student.html', context)
+
+@login_required
+@allowed_users(allowed_roles=['hod'])
+def update_session_view(request, pk):
+    session = SessionYear.objects.get(id=pk)
+    session_form = AddSessionForm(instance=session)
+    
+    if request.method == 'POST':
+        session_form = AddSessionForm(
+            request.POST, request.FILES, instance=session)
+        if session_form.is_valid():
+            session_form.save()
+            return redirect('manage_sessions_view')
+    context = {
+        'session_form': session_form
+    }
+    return render(request, 'HOD/update_session.html', context)
 
 @login_required
 @allowed_users(allowed_roles=['hod'])
