@@ -39,17 +39,19 @@ def hod_dashboard(request):
     course_count = courses.count()
     subjects = Subject.objects.all()
     subject_count = subjects.count()
+    staff_feedback_count = 0
+    staff_feedbacks = Staffs_FeedBack.objects.all()
+    for staff_feedback in staff_feedbacks:
+        if staff_feedback.reply == "":
+            staff_feedback_count += 1
     context = {
         'student_count': student_count,
         'staff_count': staff_count,
         'course_count': course_count,
-        'subject_count': subject_count
+        'subject_count': subject_count,
+        'staff_feedback_count': staff_feedback_count
     }
-    if request.user.groups.filter(name='hod'):
-        return render(request, "HOD/hod_dashboard.html", context)
-    else:
-        return render(request,'accounts/notallowed.html', {})
-        
+    return render(request, "HOD/hod_dashboard.html", context)
 
 
 @login_required
@@ -194,7 +196,10 @@ def add_session_view(request):
 @login_required
 @allowed_users(allowed_roles=['hod'])
 def manage_sessions_view(request):
-    context = {}
+    sessions = SessionYear.objects.all()
+    context = {
+        'sessions': sessions
+    }
     return render(request, 'HOD/manage_sessions.html', context)
 
 
@@ -217,7 +222,7 @@ def view_attendance(request):
         attendance_id = 0
         default_text = ""
         if request.POST.get('attendance_date')==None:
-            attendance_id = 1
+            attendance_id = Attendance.objects.all().first().id
             default_text = "Sample Attendance Structure"
         else:
             attendance_id = request.POST.get('attendance_date')

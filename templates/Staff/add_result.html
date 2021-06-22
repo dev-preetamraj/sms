@@ -62,18 +62,17 @@
                         <div class="form-group">
                             <label>Subject </label>
                             <select class="form-control" name="subject" id="subject">
-                                    <option value="1">CS201</option>
-                                    <option value="2">EE204</option>
-                                    <option value="3">DS201</option>
-                                    <option value="4">CS202</option>
-                                    <option value="5">CS304 - FLAT</option>
+                                    {% for subject in subjects %}
+                                    <option value="{{subject.id}}">{{subject.subject_name}}</option>
+                                    {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Session Year </label>
-                            <select class="form-control" name="session_year_id" id="session_year_id">    
-                                    <option value="1">March 1, 2018 to June 30, 2020</option>
-                                    <option value="2">March 1, 2020 to July 30, 2022</option>
+                            <select class="form-control" name="session_year_id" id="session_year_id">
+                                    {% for session in sessions %}
+                                    <option value="{{session.id}}">{{session.session_start_year}} - {{session.session_end_year}}</option>
+                                    {% endfor %}
                             </select>
                         </div>
                     </div>

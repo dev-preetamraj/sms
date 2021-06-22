@@ -140,9 +140,15 @@ def staff_get_attendance_student(request):
 
 @login_required
 @allowed_users(allowed_roles=['staff'])
-def add_result(req):
-    context = {}
-    return render(req, 'Staff/add_result.html', context)
+def add_result(request):
+    staff_obj = Staff.objects.get(user=request.user.id)
+    subjects = Subject.objects.filter(taught_by=staff_obj)
+    sessions = SessionYear.objects.all()
+    context = {
+        'subjects': subjects,
+        'sessions': sessions
+    }
+    return render(request, 'Staff/add_result.html', context)
 
 @login_required
 @allowed_users(allowed_roles=['staff'])

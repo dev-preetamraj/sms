@@ -27,7 +27,11 @@
                 <li><a href="{% url 'view_attendance' %}"> <i class="fa fa-calendar"></i>View Attendance </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Feedback and Leave </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="{% url 'staff_feedback_view' %}"> <i class="icon-grid"></i>Staff Feedback </a></li>
+                        <li><a href="{% url 'staff_feedback_view' %}"> <i class="icon-grid"></i>Staff Feedback
+                            {% if staff_feedback_count > 0 %}
+                            <div class="badge badge-warning">{{staff_feedback_count}} New</div>
+                            {% endif %}
+                        </a></li>
                         <li><a href="{% url 'students_feedback_view' %}"> <i class="icon-grid"></i>Student Feedback </a></li>
                         <li><a href="{% url 'staff_leave_view' %}"> <i class="icon-grid"></i>Staff Leave </a></li>
                         <li><a href="{% url 'student_leave_view' %}"> <i class="icon-grid"></i>Student Leave </a></li>
