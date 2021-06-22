@@ -42,7 +42,15 @@ urlpatterns = [
     path('delete_student/<str:pk>',
          HODviews.delete_student_view, name='delete_student'),
     path('delete_staff/<str:pk>', HODviews.delete_staff_view, name='delete_staff'),
+    path('delete_session/<str:pk>', HODviews.delete_session_view, name='delete_session'),
+    path('update_session/<str:pk>',
+         HODviews.update_session_view, name='update_session'),
     path('see_detail/<str:pk>', HODviews.see_detail_view, name='see_detail'),
     path('see_detail_staff/<str:pk>',
          HODviews.see_detail_staff_view, name='see_detail_staff'),
+
+         #------------------------url for students-----------------------------------
+
+         #------------------------url for staffs-------------------------------------
+
 ]

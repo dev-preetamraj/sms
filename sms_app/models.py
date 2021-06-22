@@ -34,7 +34,7 @@ class Staff(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     GENDER = (('Male', 'Male'),('Female', 'Female'),('Other', 'Other'))
     gender = models.CharField(max_length = 10, choices = GENDER, null=True)
-    profile_pic = models.ImageField(default = "", null = True, blank = True)
+    profile_pic = models.ImageField(default = "avatar-8.jpg", null = True, blank = True)
     address = models.TextField(null = True)
     date_joined = models.DateField(auto_now_add = True)
     last_login = models.DateField(auto_now = True)
