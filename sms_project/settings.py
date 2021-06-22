@@ -14,7 +14,7 @@ SECRET_KEY = 'a7u$&xmcth9k&m0n9lapgv(wqqq9dgev6%d&-xcl*xwcabgsdu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['prp-sms.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -67,8 +67,12 @@ WSGI_APPLICATION = 'sms_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ddtpuc92np7p1q',
+        'HOST': 'ec2-34-230-115-172.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'bykzgwedqokdcc',
+        'PASSWORD': '6da0298d8d4066c2acfcb5a12808211f98b4f380fd9f49a2037dc75e785ed311'
     }
 }
 
@@ -97,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
