@@ -41,15 +41,14 @@ def result_view(request):
 @login_required
 @allowed_users(allowed_roles=['student'])
 def leave_view(request):
-    user = request.user
+    student_obj = Student.objects.get(user=request.user)
     if request.method == 'POST':
-        student_obj = Student.objects.get(user=user.id)
         leave_date = request.POST.get('leave_date')
         message = request.POST.get('leave_message')
         leave_save = Student_Leave(student_id=student_obj, leave_date=leave_date,message=message, status=0)
         leave_save.save()
     
-    student_obj = Student.objects.get(user=user.id)
+    
     leaves = Student_Leave.objects.filter(student_id=student_obj)
     
     context = {
