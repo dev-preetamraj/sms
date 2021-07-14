@@ -1,4 +1,4 @@
-# Student Management System
+# School Management System
 Sara content baad mai dalengye, filal ke liye kaisye contribute krna vo step nichye likye hain
   
 ## Available Scripts
