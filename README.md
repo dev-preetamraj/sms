@@ -1,5 +1,8 @@
 # School Management System
-Sara content baad mai dalengye, filal ke liye kaisye contribute krna vo step nichye likye hain
+The School Management System is a sleek web-based application to manage the record of students and teachers.
+With this system,school administration can easily manage students' and teachers details i.e., results, attendance, courses,feeadback.
+Their are 3 roles in the webapp HoD, Staff, Student. HoD have all rights to access the application. They can add/delete students form the record
+
   
 ## Available Scripts
 
