@@ -14,7 +14,7 @@ SECRET_KEY = 'a7u$&xmcth9k&m0n9lapgv(wqqq9dgev6%d&-xcl*xwcabgsdu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['prp-sms.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['prp-sms.herokuapp.com', '127.0.0.1','*']
 
 
 # Application definition
