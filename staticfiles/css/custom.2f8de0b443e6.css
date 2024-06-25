@@ -1,0 +1,29 @@
+/* your styles go here */
+.btncss{margin:10px;
+    margin-left:-50px;
+    padding:0px 17px;
+    color:green}
+
+    /* div.dataTables_filter {
+        text-align: right ;
+        padding-right: 10px;
+    }
+    @media only screen and (max-width: 767px){
+        div.dataTables_filter       {
+            text-align: center;}
+    } */
+
+.card-title {
+    float: left;
+}
+.card-tools {
+    float: right;
+}
+/* .action{
+    display:flex;
+    justify-content: center;
+} */
+.back_color{
+    background-color: #9055a2;
+    color:white;
+}
