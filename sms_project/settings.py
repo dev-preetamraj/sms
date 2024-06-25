@@ -1,15 +1,21 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
+# Loading Env
+env_path = os.path.join(BASE_DIR, ".env")
+load_dotenv(dotenv_path=env_path)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'a7u$&xmcth9k&m0n9lapgv(wqqq9dgev6%d&-xcl*xwcabgsdu'
+SECRET_KEY = os.getenv(key="SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -66,14 +72,17 @@ WSGI_APPLICATION = 'sms_project.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ddtpuc92np7p1q',
-        'HOST': 'ec2-34-230-115-172.compute-1.amazonaws.com',
-        'PORT': 5432,
-        'USER': 'bykzgwedqokdcc',
-        'PASSWORD': '6da0298d8d4066c2acfcb5a12808211f98b4f380fd9f49a2037dc75e785ed311'
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': os.getenv(key='DB_NAME'),
+    'USER': os.getenv(key='DB_USER'),
+    'PASSWORD': os.getenv(key='DB_PASSWORD'),
+    'HOST': os.getenv(key='DB_HOST'),
+    'PORT': os.getenv(key='DB_PORT', default=5432),
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+  }
 }
 
 
