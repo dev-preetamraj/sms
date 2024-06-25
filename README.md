@@ -9,7 +9,7 @@ Faculty/Teachers/Staff can add attendance, Subject, and mark sheet, as well as t
  A student can view the mark sheet can check the attendance details fees details and subject details.
 
 One can access the webapp from below link:
-https://prp-sms.herokuapp.com/
+https://sms-uygv.onrender.com
 
   
 ## Available Scripts
