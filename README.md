@@ -26,3 +26,8 @@ https://sms-uygv.onrender.com
 	Runs the app in the development mode.<br />
 	Open (http://localhost:8000) to view it in the browser.
 </pre>
+
+### You can test this website as admin but please do not add unnecessary data.
+username: admin
+
+password: Test@123
